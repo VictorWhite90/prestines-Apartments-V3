@@ -4,101 +4,60 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { apartments } from '@/data/apartments'
 import { ArrowRight, Star, MapPin, Wifi, Car, Shield, Users, HomeIcon, UtensilsCrossed, Sparkles, Award, Clock, Phone, Mail, ChevronLeft, ChevronRight, Waves, Building2, Scissors, ChefHat, Trophy } from 'lucide-react'
-import { motion, AnimatePresence, useInView } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { initAllTracking, trackFacebookPageView, trackGooglePageView } from '@/utils/tracking'
+import LocateButton from '@/components/LocateButton'
 
 export default function Home() {
   // Exclude Prestige-Suite-2-Bedroom-Apartment-Lugbe and show other 3 apartments
   const featuredApartments = apartments.filter(apt => apt.id !== 'prestige-suite').slice(0, 3)
+  const exclusiveApartment = apartments.find(apt => apt.id === 'premium-apartment') || apartments[0]
   const [currentSlide, setCurrentSlide] = useState(0)
   const [showArrows, setShowArrows] = useState(false)
-  const [hoveredApartment, setHoveredApartment] = useState(null)
-  const [clickedApartment, setClickedApartment] = useState(null) // Track which apartment overlay is currently active
-  const [mobileShowOverlay, setMobileShowOverlay] = useState(null) // Track which apartment shows overlay on mobile (single value)
-  const [isMobile, setIsMobile] = useState(false)
+  const [isFeatureVideoReady, setIsFeatureVideoReady] = useState(false)
   const sectionRef = useRef(null)
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 })
 
-  // Detect mobile vs desktop
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
-
-  // Handle click to show overlay with smooth transitions
-  const handleApartmentClick = (index) => {
-    if (!isMobile) {
-      // Desktop behavior: if clicking the same apartment, close it; otherwise, switch to the new one
-      if (clickedApartment === index) {
-        setClickedApartment(null)
-      } else {
-        // Fade out current overlay first, then fade in new one
-        setClickedApartment(null)
-        setTimeout(() => {
-          setClickedApartment(index)
-        }, 300) // Half of the transition duration for smooth overlap
-      }
-      return
-    }
-
-    // Mobile behavior: if clicking the same apartment, close it; otherwise, switch to the new one
-    if (mobileShowOverlay === index) {
-      setMobileShowOverlay(null)
-    } else {
-      // Fade out current overlay first, then fade in new one
-      setMobileShowOverlay(null)
-      setTimeout(() => {
-        setMobileShowOverlay(index)
-      }, 300) // Half of the transition duration for smooth overlap
-    }
-  }
-
   const heroImages = [
     {
-      image: '/images/prestineAprtLivingRoom.jpg',
-      text: { position: 'left', main: 'Exclusive', sub: 'Environment', tagline: 'Where luxury meets convenience for the discerning traveler' }
+      image: '/images/bgAIgenerated9.jpeg',
+      text: { position: 'left', main: 'Warm', sub: 'Hospitality', tagline: 'A gracious welcome from arrival to checkout' }
     },
     {
-      image: '/images/prestineAprtoutside.jpg',
-      text: { position: 'right', main: 'Prime', sub: 'Location', tagline: 'Located in the heart of Abuja, minutes from the airport' }
+      image: '/images/bgAIgenerated2.jpeg',
+      text: { position: 'right', main: 'Refined', sub: 'Lounge', tagline: 'Settle into a calm space designed for easy evenings' }
     },
     {
-      image: '/images/prestineAprtBedroom.jpg',
-      text: { position: 'center', main: 'Luxury', sub: 'Bedrooms', tagline: 'Rest in comfort with our elegantly designed bedrooms' }
+      image: '/new prestine images/nwpremuimpalour (2).jpg',
+      text: { position: 'left', main: 'Polished', sub: 'Parlour', tagline: 'A welcoming living room made for quiet comfort and conversation' }
     },
     {
-      image: '/images/delux-outsideview.jpg',
-      text: { position: 'left', main: 'Modern', sub: 'Architecture', tagline: 'Contemporary design meets timeless elegance' }
+      image: '/new prestine images/kitten.jpg',
+      text: { position: 'center', main: 'Modern', sub: 'Kitchen', tagline: 'A clean, functional cooking space with a premium finish' }
     },
     {
-      image: '/images/prestineAprtKitchen.jpg',
-      text: { position: 'right', main: 'Fully', sub: 'Equipped', tagline: 'Complete kitchen facilities for your convenience' }
+      image: '/new prestine images/palour and dinning.jpg',
+      text: { position: 'left', main: 'Elegant', sub: 'Dining', tagline: 'Thoughtfully styled spaces made for easy living' }
     },
     {
-      image: '/images/prestineAprtoutside2.jpg',
-      text: { position: 'center', main: 'Spacious', sub: 'Living', tagline: 'Experience comfort in our well-appointed spaces' }
+      image: '/new prestine images/premuim bathroom.png',
+      text: { position: 'right', main: 'Refined', sub: 'Bathroom', tagline: 'Every detail crafted for your ultimate comfort' }
     },
     {
-      image: '/images/delux4bedromlivingRoom.jpg',
-      text: { position: 'left', main: 'Premium', sub: 'Comfort', tagline: 'Unwind in style with our premium amenities' }
-    },
-    {
-      image: '/images/prestineAprtBedroom2.jpg',
-      text: { position: 'right', main: 'Elegant', sub: 'Design', tagline: 'Every detail crafted for your ultimate comfort' }
+      image: '/new prestine images/premuimbedroomwithpillows.jpg',
+      text: { position: 'center', main: 'Bright', sub: 'Bedrooms', tagline: 'Warm, restful rooms for a calm stay' }
     },
   ]
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroImages.length)
+      setCurrentSlide((prev) => {
+        return (prev + 1) % heroImages.length
+      })
     }, 7000)
 
     return () => clearInterval(interval)
-  }, [heroImages.length])
+  }, [currentSlide, heroImages.length])
 
   // Initialize tracking scripts
   useEffect(() => {
@@ -108,11 +67,15 @@ export default function Home() {
   }, [])
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % heroImages.length)
+    setCurrentSlide((prev) => {
+      return (prev + 1) % heroImages.length
+    })
   }
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length)
+    setCurrentSlide((prev) => {
+      return (prev - 1 + heroImages.length) % heroImages.length
+    })
   }
 
   const goToSlide = (index) => {
@@ -124,7 +87,7 @@ export default function Home() {
       case 'center':
         return 'items-center justify-center text-center px-8 md:px-16'
       case 'left':
-        return 'items-start justify-start text-left px-8 md:px-16'
+        return 'items-start justify-start text-left px-12 md:px-20 lg:px-24'
       case 'right':
         return 'items-end justify-end text-right px-8 md:px-16'
       default:
@@ -138,14 +101,14 @@ export default function Home() {
       location: "Lagos, Nigeria",
       rating: 5,
       text: "Exceptional service and beautiful apartments. The location is perfect and the staff went above and beyond to ensure our comfort.",
-      image: "/images/prestineAprtLivingRoom.jpg"
+      image: "/new prestine images/nwpremuimpalour (2).jpg"
     },
     {
       name: "Adebayo Adeyemi",
       location: "Abuja, Nigeria",
       rating: 5,
       text: "Modern amenities and impeccable cleanliness. Highly recommend for both business and leisure travelers.",
-      image: "/images/prestineAprtBedroom.jpg"
+      image: "/new prestine images/premuimbedroomwithpillows.jpg"
     },
     {
       name: "Amina Ibrahim",
@@ -196,90 +159,69 @@ export default function Home() {
 
   return (
     <div className="min-h-screen overflow-x-hidden max-w-full w-full">
-      {/* Hero Section with Image Slider */}
+      {/* Hero Section with Video Intro and Image Slider */}
       <section
-        className="relative h-[60vh] md:h-screen flex items-center justify-center overflow-hidden rounded-tl-[80px]"
+        className="relative h-[60vh] md:h-screen flex items-center justify-center overflow-hidden rounded-tl-[40px]"
         onMouseEnter={() => setShowArrows(true)}
         onMouseLeave={() => setShowArrows(false)}
       >
         {/* Animated gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-transparent to-blue-800/20 animate-gradient-shift bg-200% z-[1] pointer-events-none"></div>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentSlide}
-            initial={{ opacity: 0, scale: 1.1 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="absolute inset-0 rounded-tl-[80px]"
+        {heroImages.map((slide, index) => (
+          <div
+            key={slide.image}
+            className={`absolute inset-0 rounded-tl-[40px] transition-opacity duration-700 ease-in-out ${
+              currentSlide === index ? 'opacity-100' : 'opacity-0'
+            }`}
           >
             <img
-              src={heroImages[currentSlide].image}
-              alt={`Slide ${currentSlide + 1}`}
-              className="w-full h-full object-cover rounded-tl-[80px]"
-              loading="lazy"
+              src={slide.image}
+              alt={`Slide ${index + 1}`}
+              className="w-full h-full object-cover rounded-tl-[40px]"
+              loading="eager"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
-          </motion.div>
-        </AnimatePresence>
+          </div>
+        ))}
 
         {/* Text Overlay */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentSlide}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -30 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className={`absolute inset-0 flex ${getTextPosition(heroImages[currentSlide].text.position)}`}
-          >
-            <div className="text-white z-10 max-w-4xl px-4 pb-20 md:pb-32 pt-12 md:pt-16">
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, type: "spring", stiffness: 50 }}
-                className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-serif font-light mb-2 tracking-tight drop-shadow-2xl"
-                style={{
-                  textShadow: '0 4px 20px rgba(0,0,0,0.5), 0 8px 40px rgba(37,99,235,0.3)'
-                }}
-              >
-                {heroImages[currentSlide].text.main}
-              </motion.h1>
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, type: "spring", stiffness: 50 }}
-                className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-serif font-light mb-3 tracking-tight drop-shadow-2xl"
-                style={{
-                  textShadow: '0 4px 20px rgba(0,0,0,0.5), 0 8px 40px rgba(37,99,235,0.3)'
-                }}
-              >
-                {heroImages[currentSlide].text.sub}
-              </motion.h2>
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.7 }}
-                className="text-xs sm:text-xs md:text-sm text-white/90 font-light max-w-xl mt-3 md:mt-4 drop-shadow-lg mb-6 md:mb-8"
-              >
-                {heroImages[currentSlide].text.tagline}
-              </motion.p>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.9 }}
-              >
-                <Link to="/apartments">
-                  <Button className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 sm:px-8 sm:py-4 text-xs sm:text-base font-semibold shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105 w-auto">
-                    Explore Apartments
-                    <ArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
-                  </Button>
-                </Link>
-              </motion.div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
+        <motion.div
+          key={`hero-text-${currentSlide}`}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className={`absolute inset-0 flex ${getTextPosition(heroImages[currentSlide].text.position)}`}
+        >
+          <div className="text-white z-10 max-w-4xl px-4 pb-20 md:pb-32 pt-24 md:pt-32 lg:pt-40">
+            <h1
+              className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-serif font-light mb-2 tracking-tight drop-shadow-2xl"
+              style={{
+                textShadow: '0 4px 20px rgba(0,0,0,0.5), 0 8px 40px rgba(37,99,235,0.3)'
+              }}
+            >
+              {heroImages[currentSlide].text.main}
+            </h1>
+            <h2
+              className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-serif font-light mb-3 tracking-tight drop-shadow-2xl"
+              style={{
+                textShadow: '0 4px 20px rgba(0,0,0,0.5), 0 8px 40px rgba(37,99,235,0.3)'
+              }}
+            >
+              {heroImages[currentSlide].text.sub}
+            </h2>
+            <p className="text-xs sm:text-xs md:text-sm text-white/90 font-light max-w-xl mt-3 md:mt-4 drop-shadow-lg mb-6 md:mb-8">
+              {heroImages[currentSlide].text.tagline}
+            </p>
+            <Link to="/apartments">
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 sm:px-8 sm:py-4 text-xs sm:text-base font-semibold shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105 w-auto">
+                Explore Apartments
+                <ArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
+              </Button>
+            </Link>
+          </div>
+        </motion.div>
 
         {/* Navigation Arrows - Show on Hover (Desktop Only) */}
         <div className="hidden md:block">
@@ -321,58 +263,54 @@ export default function Home() {
       </section>
 
       {/* Exclusive Environment Section */}
-      <section ref={sectionRef} className="py-12 md:py-16 lg:py-24 bg-white">
+      <section ref={sectionRef} className="bg-[#f7f5f0] py-12 md:py-16 lg:py-24">
         <div className="container mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-8 md:gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
             {/* Left Column - Text Content */}
             <motion.div
               initial={{ opacity: 0, x: -100 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="space-y-4 md:space-y-6"
+              className="space-y-5 md:space-y-6"
             >
-              <h3 className="text-xs sm:text-sm md:text-base font-semibold text-gray-600 uppercase tracking-wider mb-2 md:mb-4">
-                EXCLUSIVE ENVIRONMENT
+              <h3 className="text-xs sm:text-sm font-semibold text-orange-700 uppercase tracking-[0.22em]">
+                SIGNATURE RESIDENCE
               </h3>
-              <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-serif font-light text-gray-900 mb-4 md:mb-6 leading-tight">
-                Discover our rooms and apartments
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-light text-gray-950 leading-tight">
+                Exclusive comfort, quietly elevated
               </h2>
-              <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">
-                Welcome to Prestine Apartments, where comfort meets convenience in the heart of Apo. 
-                Experience unparalleled comfort and elegance in the heart of Abuja. Where luxury meets 
-                convenience for the discerning traveler.
+              <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed max-w-2xl">
+                For guests who prefer privacy, calm, and a more considered stay, our Premium Royale
+                apartment brings polished interiors, attentive support, and the ease of a refined Apo address.
               </p>
-              <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">
-                Located just minutes from the Nnamdi Azikiwe International Airport and major business 
-                districts, our premium apartments offer the perfect blend of sophisticated living and 
-                strategic accessibility.
+              <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed max-w-2xl">
+                It is designed for business leaders, couples, and long-stay guests who want hotel-grade
+                convenience without giving up the comfort and discretion of a private residence.
               </p>
-              <div className="grid grid-cols-3 gap-4 md:gap-8 pt-4 md:pt-6 border-t border-gray-200">
-                <div>
-                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-orange-600 mb-1">{apartments.length}+</div>
-                  <div className="text-xs sm:text-sm text-gray-600">Premium Apartments</div>
-                </div>
-                <div>
-                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-orange-600 mb-1">500+</div>
-                  <div className="text-xs sm:text-sm text-gray-600">Happy Guests</div>
-                </div>
-                <div>
-                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-orange-600 mb-1">
-                    {(apartments.reduce((sum, apt) => sum + (apt.rating || 4.9), 0) / apartments.length).toFixed(1)}
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                {[
+                  { label: 'Private Apo setting', value: 'Apo' },
+                  { label: 'Premium nightly stay', value: `NGN ${exclusiveApartment.price.toLocaleString()}` },
+                  { label: 'Guest rating', value: `${exclusiveApartment.rating || 4.9}/5` },
+                ].map((item) => (
+                  <div key={item.label} className="border-y border-gray-300/70 py-4">
+                    <div className="text-lg md:text-xl font-semibold text-gray-950">{item.value}</div>
+                    <div className="mt-1 text-xs uppercase tracking-[0.16em] text-gray-500">{item.label}</div>
                   </div>
-                  <div className="text-xs sm:text-sm text-gray-600">Average Rating</div>
-                </div>
+                ))}
               </div>
-              <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-4">
-                <Link to="/apartments" className="w-full sm:w-auto">
-                  <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 md:px-8 w-full sm:w-auto">
-                    Explore Apartments
-                    <ArrowRight className="ml-2 h-4 w-4" />
+
+              <div className="flex flex-row gap-2 sm:gap-3 md:gap-4 pt-2">
+                <Link to={`/apartments/${exclusiveApartment.slug}`} className="min-w-0 flex-1 sm:flex-none">
+                  <Button className="bg-gray-950 hover:bg-gray-800 text-white px-3 sm:px-6 md:px-8 w-full text-xs sm:text-sm md:text-base whitespace-nowrap">
+                    View Premium Apartment
+                    <ArrowRight className="ml-1.5 h-3.5 w-3.5 sm:ml-2 sm:h-4 sm:w-4" />
                   </Button>
                 </Link>
-                <Link to="/contact" className="w-full sm:w-auto">
-                  <Button variant="outline" className="border-orange-600 text-orange-600 hover:bg-orange-50 px-6 md:px-8 w-full sm:w-auto">
-                    Contact Us
+                <Link to="/apartments" className="min-w-0 flex-1 sm:flex-none">
+                  <Button variant="outline" className="border-gray-950 text-gray-950 hover:bg-white px-3 sm:px-6 md:px-8 w-full text-xs sm:text-sm md:text-base whitespace-nowrap">
+                    Browse Collection
                   </Button>
                 </Link>
               </div>
@@ -385,15 +323,90 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
               className="relative"
             >
-              <div className="relative rounded-lg overflow-hidden shadow-2xl">
+              <div className="relative overflow-hidden rounded-lg shadow-2xl bg-gray-950">
                 <img
-                  src="/images/prestineAprtLivingRoom.jpg"
-                  alt="Prestine Apartments"
-                  className="w-full h-auto object-cover"
+                  src={exclusiveApartment.image}
+                  alt={exclusiveApartment.name}
+                  className="h-[420px] md:h-[520px] w-full object-cover"
                   loading="lazy"
                 />
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Video Feature Section */}
+      <section className="relative w-full overflow-hidden bg-black">
+        <div className="relative h-[62vh] md:h-[72vh] w-full">
+          <img
+            src="/new prestine images/nwpremuimpalour (2).jpg"
+            alt="Prestine Apartments premium living room"
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+              isFeatureVideoReady ? 'opacity-0' : 'opacity-100'
+            }`}
+            loading="eager"
+            decoding="async"
+          />
+
+          <video
+            className="absolute inset-0 h-full w-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/new prestine images/nwpremuimpalour (2).jpg"
+            onLoadedData={() => setIsFeatureVideoReady(true)}
+            onCanPlay={() => setIsFeatureVideoReady(true)}
+          >
+            <source src={encodeURI('/prestine compressed video.mp4')} type="video/mp4" />
+          </video>
+
+          <div className="absolute inset-0 bg-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/18 via-black/6 to-black/16" />
+
+          <div className="absolute inset-0 z-10 flex items-center justify-center px-6 text-center">
+            <div className="max-w-3xl text-white">
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="font-serif text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-light tracking-tight leading-tight"
+                style={{
+                  textShadow: '0 3px 10px rgba(0,0,0,0.25), 0 6px 18px rgba(0,0,0,0.12)'
+                }}
+              >
+                Plan Your
+                <br />
+                Ultimate Escape
+              </motion.h2>
+
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.15 }}
+                className="mx-auto mt-5 max-w-2xl text-sm sm:text-base md:text-lg text-white/90"
+              >
+                Take a quick look inside the spaces and see how every apartment is designed to feel calm, polished, and memorable.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="mt-8"
+              >
+                <Link to="/apartments">
+                  <Button className="h-12 rounded-none bg-white px-8 text-sm font-medium text-gray-900 hover:bg-gray-100 md:h-14 md:px-10 md:text-base">
+                    Check Availability
+                  </Button>
+                </Link>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -425,19 +438,6 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
             {featuredApartments.map((apartment, index) => {
-              const isHovered = hoveredApartment === index
-              const isClicked = clickedApartment === index
-              const isMobileOverlayShown = mobileShowOverlay === index
-
-              // Desktop: show on hover or click | Mobile: show only on click
-              // Only show overlay if this is the active one
-              const showOverlay = isMobile
-                ? isMobileOverlayShown
-                : (isHovered || isClicked)
-
-              // Show "Check Apartment Details" text when overlay is not shown
-              const showCheckText = !showOverlay
-
               return (
                 <motion.div
                   key={apartment.id}
@@ -448,13 +448,11 @@ export default function Home() {
                   className="relative group"
                   whileHover={{ y: -12, transition: { duration: 0.3 } }}
                 >
-                  {/* Animated glow effect on hover */}
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-blue-400 rounded-tl-[80px] opacity-0 group-hover:opacity-75 blur transition duration-500 group-hover:duration-200"></div>
+                  {/* Subtle edge highlight on hover */}
+                  <div className="absolute -inset-0.5 bg-blue-600/25 rounded-tl-[80px] opacity-0 group-hover:opacity-100 transition duration-300"></div>
 
                   <div
                     className="relative overflow-hidden rounded-tl-[80px] shadow-lg group h-96 md:h-[500px] cursor-pointer bg-white"
-                    onMouseEnter={() => !isMobile && setHoveredApartment(index)}
-                    onMouseLeave={() => !isMobile && setHoveredApartment(null)}
                   >
                     <img
                       src={apartment.image}
@@ -467,121 +465,37 @@ export default function Home() {
                     {apartment.originalPrice && (
                       <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1.5 rounded-lg shadow-2xl transform z-20">
                         <span className="text-xs font-bold uppercase tracking-wide">
-                          {Math.round(((apartment.originalPrice - apartment.price) / apartment.originalPrice) * 100)}% OFF
+                          {Math.round(((apartment.originalPrice - apartment.price) / apartment.originalPrice) * 100)} OFF
                         </span>
                       </div>
                     )}
 
-                    {/* Apartment Name Centered Overlay - Shows when full overlay is hidden */}
-                    {showCheckText && (
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent flex items-center justify-center p-6 cursor-pointer"
-                        onClick={() => handleApartmentClick(index)}
-                      >
-                        {/* Apartment Name at Center */}
-                        <motion.div
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 10 }}
-                          transition={{ delay: 0.1, duration: 0.3 }}
-                          className="text-center"
-                        >
-                          <h3 className="text-white text-lg md:text-xl lg:text-2xl font-bold mb-2">
-                            {apartment.name}
-                          </h3>
-                          <p className="text-white/90 text-sm md:text-base">
-                            View Apartment Details
-                          </p>
-                        </motion.div>
-                      </motion.div>
-                    )}
-                    
-                    {/* Desktop/Mobile Full Overlay - Shows on hover/click (desktop) or click (mobile) */}
-                    <AnimatePresence mode="wait">
-                      {showOverlay && (
-                        <motion.div
-                          key={`overlay-${index}`}
-                          initial={{
-                            opacity: 0,
-                            clipPath: index === 0 || index === 2
-                              ? 'ellipse(0% 100% at 0% 50%)'
-                              : 'ellipse(0% 100% at 100% 50%)'
-                          }}
-                          animate={{
-                            opacity: 1,
-                            clipPath: 'ellipse(100% 100% at 50% 50%)'
-                          }}
-                          exit={{
-                            opacity: 0,
-                            clipPath: index === 0 || index === 2
-                              ? 'ellipse(0% 100% at 0% 50%)'
-                              : 'ellipse(0% 100% at 100% 50%)'
-                          }}
-                          transition={{
-                            duration: 0.6,
-                            ease: "easeInOut"
-                          }}
-                          className="absolute inset-0 bg-black/70 backdrop-blur-md flex flex-col justify-end p-6 md:p-8 text-white cursor-pointer"
-                          onClick={() => handleApartmentClick(index)}
-                        >
-                      <div className="space-y-3 md:space-y-4">
-                        {/* Location */}
-                        <motion.div
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.2, duration: 0.5 }}
-                          className="flex items-center gap-2 text-sm md:text-base text-white/95 text-left"
-                        >
-                          <MapPin className="h-4 w-4 md:h-5 md:w-5 flex-shrink-0" />
-                          <span className="font-medium">{apartment.location}</span>
-                        </motion.div>
-
-                        {/* Rating */}
-                        <motion.div
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.3, duration: 0.5 }}
-                          className="flex items-center gap-1.5 text-left"
-                        >
-                          {[...Array(5)].map((_, i) => (
-                            <Star key={i} className="h-4 w-4 md:h-5 md:w-5 fill-yellow-400 text-yellow-400" />
-                          ))}
-                          <span className="text-sm md:text-base font-semibold ml-1">{apartment.rating || 4.9}</span>
-                          <span className="text-xs md:text-sm text-white/80">({apartment.reviewCount || 128} reviews)</span>
-                        </motion.div>
-
-                        {/* Apartment Name */}
-                        <motion.h3
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.4, duration: 0.5 }}
-                          className="text-lg md:text-xl font-bold leading-tight text-left"
-                        >
-                          {apartment.name}
-                        </motion.h3>
+                    <div className="absolute bottom-4 right-4 z-30 px-3 py-2 text-right text-white drop-shadow">
+                      <div className="font-serif text-sm italic leading-tight md:text-base">
+                        ₦{apartment.price.toLocaleString()}/night
                       </div>
+                      <div className="mt-0.5 text-[9px] font-medium leading-tight text-white/75">
+                        VAT included
+                      </div>
+                    </div>
 
-                      {/* Check Now Button - Bottom Left */}
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.6, duration: 0.5 }}
-                        className="mt-4"
-                      >
-                        <Link to={`/apartments/${apartment.slug}`} onClick={(e) => e.stopPropagation()}>
-                          <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-5 md:px-8 md:py-6 text-sm md:text-base font-semibold shadow-lg hover:shadow-xl transition-all">
-                            Check Now
-                            <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5" />
-                          </Button>
-                        </Link>
-                      </motion.div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                    <Link
+                      to={`/apartments/${apartment.slug}`}
+                      className="absolute inset-x-0 bottom-0 z-20 bg-gradient-to-t from-black/45 to-transparent px-4 pb-4 pt-16 text-white"
+                    >
+                      <div className="max-w-[72%] -translate-y-4 transition-transform duration-300 group-hover:-translate-y-7">
+                        <h3 className="text-sm md:text-base font-semibold leading-tight drop-shadow">
+                          {apartment.name}
+                        </h3>
+                        <p className="mt-1 text-[11px] md:text-xs text-white/85">
+                          View details
+                        </p>
+                        <div className="mt-3 hidden w-fit translate-x-5 items-center gap-1.5 rounded-full bg-white px-3 py-2 text-[11px] font-semibold text-gray-950 opacity-0 shadow-lg transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 md:inline-flex">
+                          Open
+                          <ArrowRight className="h-3 w-3" />
+                        </div>
+                      </div>
+                    </Link>
                   </div>
                 </motion.div>
               )
@@ -788,7 +702,7 @@ export default function Home() {
                   <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5" />
                 </Button>
               </Link>
-              <a href="tel:+2348029823593" className="w-full sm:w-auto">
+              <a href="tel:09112300062" className="w-full sm:w-auto">
                 <Button size="lg" variant="outline" className="text-base md:text-lg px-6 md:px-8 h-12 md:h-14 border-2 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white w-full sm:w-auto">
                   <Phone className="mr-2 h-4 w-4 md:h-5 md:w-5" />
                   Call Us Now
@@ -800,6 +714,7 @@ export default function Home() {
                   Send Email
                 </Button>
               </a>
+              <LocateButton className="w-full sm:w-auto h-12 md:h-14 px-6 md:px-8 text-base md:text-lg bg-white text-gray-950 hover:bg-gray-100" />
             </div>
           </motion.div>
         </div>

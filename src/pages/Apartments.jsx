@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -8,37 +8,32 @@ import { ArrowRight, MapPin, Users, Home, Star, Bed, Bath, Wifi, ChevronLeft, Ch
 import { initAllTracking, trackFacebookPageView, trackGooglePageView } from '@/utils/tracking'
 
 export default function Apartments() {
-  // Reorder apartments: 1-bedroom first, Lugbe last
+  // Reorder apartments: premium, standard, studio, deluxe, Lugbe last
   const reorderedApartments = [
     apartments.find(apt => apt.id === 'premium-apartment'), // 1 bedroom first
+    apartments.find(apt => apt.id === 'standard-apartment'),
     apartments.find(apt => apt.id === 'classic-studio'),
     apartments.find(apt => apt.id === 'delux-royal'),
     apartments.find(apt => apt.id === 'prestige-suite'), // Lugbe last
   ].filter(Boolean)
 
-  // Hero carousel images - curated selection: exactly 5 images
-  const lugbeApartment = apartments.find(apt => apt.id === 'prestige-suite')
-  const premiumApartment = apartments.find(apt => apt.id === 'premium-apartment')
-  const studioApartment = apartments.find(apt => apt.id === 'classic-studio')
-  const deluxApartment = apartments.find(apt => apt.id === 'delux-royal')
-  
-  // Select specific images: different 1st and last, 1 from Lugbe (skip first 3), others from different apartments
-  const heroImages = [
-    '/images/prestineAprtFrontdesk.jpg', // 1st image - frontdesk image
-    premiumApartment?.image || '/images/prestineAprtLivingRoom.jpg', // 2nd image - Premium apartment
-    studioApartment?.image || '/images/prestineAprtBedroomDark.jpg', // 3rd image - Studio apartment
-    lugbeApartment?.images?.[3] || '/images/lugbe bedroom 3.webp', // 4th image - Lugbe (1 image, skip first 3)
-    '/images/prestineAprtoutside.jpg' // 5th image (last) - different image (not delux living room)
-  ].filter(Boolean).slice(0, 5) // Ensure exactly 5 images
+  // Hero carousel - one slide for each of the apartments shown here
+  const heroApartments = [
+    apartments.find(apt => apt.id === 'premium-apartment'),
+    apartments.find(apt => apt.id === 'standard-apartment'),
+    apartments.find(apt => apt.id === 'classic-studio'), 
+    apartments.find(apt => apt.id === 'delux-royal'),
+    apartments.find(apt => apt.id === 'prestige-suite'),
+  ].filter(Boolean)
   const [currentHeroSlide, setCurrentHeroSlide] = useState(0)
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentHeroSlide((prev) => (prev + 1) % heroImages.length)
+      setCurrentHeroSlide((prev) => (prev + 1) % heroApartments.length)
     }, 5000)
 
     return () => clearInterval(interval)
-  }, [heroImages.length])
+  }, [heroApartments.length])
 
   // Initialize tracking scripts
   useEffect(() => {
@@ -48,35 +43,66 @@ export default function Apartments() {
   }, [])
 
   const nextHeroSlide = () => {
-    setCurrentHeroSlide((prev) => (prev + 1) % heroImages.length)
+    setCurrentHeroSlide((prev) => (prev + 1) % heroApartments.length)
   }
 
   const prevHeroSlide = () => {
-    setCurrentHeroSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length)
+    setCurrentHeroSlide((prev) => (prev - 1 + heroApartments.length) % heroApartments.length)
   }
 
   return (
     <div className="min-h-screen bg-gray-50 overflow-x-hidden max-w-full w-full">
-      {/* Hero Section with Image Carousel */}
+      {/* Hero Section with Apartment Carousel */}
       <section className="relative h-[60vh] md:h-[70vh] overflow-hidden max-w-full w-full">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentHeroSlide}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}
-            className="absolute inset-0"
+        {heroApartments.map((apartment, index) => (
+          <div
+            key={apartment.id}
+            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+              currentHeroSlide === index ? 'opacity-100' : 'opacity-0'
+            }`}
           >
             <img
-              src={heroImages[currentHeroSlide]}
-              alt={`Apartment slide ${currentHeroSlide + 1}`}
+              src={apartment.image}
+              alt={apartment.name}
               className="w-full h-full object-cover max-w-full"
-              loading="lazy"
+              loading="eager"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-black/40"></div>
+          </div>
+        ))}
+
+        {/* Apartment Info Overlay - Bottom Left */}
+        <div className="absolute bottom-0 left-0 z-10 p-6 md:p-8 pb-16 md:pb-8">
+          <motion.div
+            key={heroApartments[currentHeroSlide]?.id}
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+            className="text-left text-white"
+          >
+            <h1
+              className="text-lg sm:text-xl md:text-2xl font-serif font-light mb-2 tracking-tight"
+              style={{
+                textShadow: '0 4px 20px rgba(0,0,0,0.8), 0 8px 40px rgba(0,0,0,0.5)'
+              }}
+            >
+              {heroApartments[currentHeroSlide]?.name}
+            </h1>
+
+            <div className="flex items-center gap-2 mb-4 text-white/90">
+              <MapPin className="h-4 w-4" />
+              <span className="text-sm">{heroApartments[currentHeroSlide]?.location}</span>
+            </div>
+
+            <Link to={`/apartments/${heroApartments[currentHeroSlide]?.slug}`}>
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-sm font-semibold shadow-lg hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105">
+                View Details & Book Now
+                <ArrowRight className="ml-1 h-4 w-4" />
+              </Button>
+            </Link>
           </motion.div>
-        </AnimatePresence>
+        </div>
 
         {/* Navigation Arrows */}
         <button
@@ -96,14 +122,14 @@ export default function Apartments() {
 
         {/* Slide Indicators */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
-          {heroImages.map((_, index) => (
+          {heroApartments.map((apartment, index) => (
             <button
-              key={index}
+              key={apartment.id}
               onClick={() => setCurrentHeroSlide(index)}
               className={`w-2 h-2 rounded-full transition-all ${
                 currentHeroSlide === index ? 'bg-white w-8' : 'bg-white/50'
               }`}
-              aria-label={`Go to slide ${index + 1}`}
+              aria-label={`Go to ${apartment.name}`}
             />
           ))}
         </div>
@@ -192,6 +218,9 @@ export default function Apartments() {
                               </span>
                             </>
                           )}
+                          <span className="text-[10px] font-medium leading-tight text-white/85">
+                            Including VAT and service charge
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -223,6 +252,14 @@ export default function Apartments() {
                       <h2 className="relative text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 break-words font-serif">
                         {apartment.name}
                       </h2>
+                      <div className="relative mb-4">
+                        <p className="font-serif text-2xl md:text-3xl font-bold italic text-gray-900">
+                          ₦{apartment.price.toLocaleString()}/night
+                        </p>
+                        <p className="text-sm font-medium text-gray-600">
+                          Including VAT and service charge
+                        </p>
+                      </div>
                       <div className="relative flex items-center gap-2 text-gray-600 mb-4">
                         <MapPin className="h-5 w-5 text-blue-600" />
                         <span className="text-lg">{apartment.location}</span>
@@ -306,9 +343,9 @@ export default function Apartments() {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-              <a href="tel:+2348029823593">
+              <a href="tel:09112300062">
                 <Button size="lg" variant="outline" className="text-lg px-8 h-14 border-2 border-gray-300 text-gray-900 bg-white hover:bg-white hover:text-gray-900">
-                  Call Now: (+234) 0802 982 3593
+                  Call Now: 09112300062
                 </Button>
               </a>
             </div>
@@ -318,3 +355,4 @@ export default function Apartments() {
     </div>
   )
 }
+

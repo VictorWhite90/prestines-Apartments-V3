@@ -14,6 +14,9 @@ export default function ApartmentDetail() {
   const navigate = useNavigate()
   const apartment = apartments.find((apt) => apt.slug === slug)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [pendingImageIndex, setPendingImageIndex] = useState(null)
+  const [nextImageReady, setNextImageReady] = useState(false)
+  const [loadedImages, setLoadedImages] = useState(() => new Set())
   const [starPosition, setStarPosition] = useState({ top: '15%', left: '15%' })
   const [showStar, setShowStar] = useState(true)
   const [currentPositionIndex, setCurrentPositionIndex] = useState(0)
@@ -58,6 +61,36 @@ export default function ApartmentDetail() {
     trackGooglePageView(`/apartments/${slug}`)
   }, [slug])
 
+  useEffect(() => {
+    if (!apartment?.images?.length) return
+
+    let cancelled = false
+
+    apartment.images.forEach((src) => {
+      const image = new Image()
+      image.loading = 'eager'
+      image.fetchPriority = 'high'
+      image.src = src
+      const markLoaded = () => {
+        if (cancelled) return
+        setLoadedImages((prev) => {
+          if (prev.has(src)) return prev
+          const next = new Set(prev)
+          next.add(src)
+          return next
+        })
+      }
+      image.onload = markLoaded
+      if (image.decode) {
+        image.decode().then(markLoaded).catch(() => {})
+      }
+    })
+
+    return () => {
+      cancelled = true
+    }
+  }, [apartment?.images])
+
   if (!apartment) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -72,28 +105,70 @@ export default function ApartmentDetail() {
   }
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % apartment.images.length)
+    const nextIndex = (currentImageIndex + 1) % apartment.images.length
+    if (loadedImages.has(apartment.images[nextIndex])) {
+      setCurrentImageIndex(nextIndex)
+      setPendingImageIndex(null)
+      setNextImageReady(false)
+      return
+    }
+
+    const preload = new Image()
+    preload.loading = 'eager'
+    preload.fetchPriority = 'high'
+    preload.src = apartment.images[nextIndex]
+    if (preload.decode) preload.decode().catch(() => {})
+    setPendingImageIndex(nextIndex)
+    setNextImageReady(false)
   }
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + apartment.images.length) % apartment.images.length)
+    const prevIndex = (currentImageIndex - 1 + apartment.images.length) % apartment.images.length
+    if (loadedImages.has(apartment.images[prevIndex])) {
+      setCurrentImageIndex(prevIndex)
+      setPendingImageIndex(null)
+      setNextImageReady(false)
+      return
+    }
+
+    const preload = new Image()
+    preload.loading = 'eager'
+    preload.fetchPriority = 'high'
+    preload.src = apartment.images[prevIndex]
+    if (preload.decode) preload.decode().catch(() => {})
+    setPendingImageIndex(prevIndex)
+    setNextImageReady(false)
   }
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="relative h-[60vh] overflow-hidden">
+      <section className="relative h-[68vh] md:h-[74vh] overflow-hidden bg-gray-200">
         <motion.img
-          key={currentImageIndex}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
           src={apartment.images[currentImageIndex]}
           alt={apartment.name}
-          className="w-full h-full object-cover"
-          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          initial={false}
+          animate={{ opacity: 1 }}
         />
-        <div className="absolute inset-0 bg-black/40"></div>
+        {pendingImageIndex !== null && (
+          <motion.img
+            key={pendingImageIndex}
+            src={apartment.images[pendingImageIndex]}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: nextImageReady ? 1 : 0 }}
+            transition={{ duration: 0.18, ease: 'easeOut' }}
+            onLoad={() => {
+              setNextImageReady(true)
+              setCurrentImageIndex(pendingImageIndex)
+              setPendingImageIndex(null)
+            }}
+          />
+        )}
+        <div className="absolute inset-0 bg-transparent"></div>
         
         {/* Image Navigation */}
         {apartment.images.length > 1 && (
@@ -136,12 +211,12 @@ export default function ApartmentDetail() {
                     <div className="flex items-center gap-2 flex-wrap">
                       <span className="text-base md:text-lg font-bold group-hover:text-white transition-colors duration-300">PROMO: ₦{apartment.price.toLocaleString()}/night</span>
                     </div>
-                    <span className="text-xs bg-black/10 group-hover:bg-white/20 px-2 py-1 rounded inline-block group-hover:text-white transition-all duration-300">Promo ends on 2 January</span>
+                    {/* <span className="text-xs bg-black/10 group-hover:bg-white/20 px-2 py-1 rounded inline-block group-hover:text-white transition-all duration-300">Promo ends on 2 January</span> */}
                   </div>
                 </div>
               )}
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-                <div className="flex items-baseline gap-2">
+                <div className="flex flex-col gap-1">
                   {apartment.originalPrice ? (
                     <>
                       <div className="flex items-baseline gap-2">
@@ -160,6 +235,9 @@ export default function ApartmentDetail() {
                       </p>
                     </>
                   )}
+                  <p className="text-xs md:text-sm font-medium text-gray-500">
+                    Including VAT and service charge
+                  </p>
                 </div>
               </div>
             </div>
@@ -272,7 +350,7 @@ export default function ApartmentDetail() {
               <MapPin className="text-orange-600" size={32} />
               Locate Us on Map
             </h2>
-            <p className="text-gray-600">Plot 219, Apo Dutse, Apo, Abuja FCT, Nigeria</p>
+            <p className="text-gray-600">Plot 219 Martin Ejembi Crescent, Apo-Dutse, Abuja.</p>
           </motion.div>
           <div className="rounded-lg overflow-hidden shadow-lg">
             <iframe
@@ -324,8 +402,9 @@ export default function ApartmentDetail() {
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                       loading="lazy"
                     />
-                    <div className="absolute top-4 right-4 bg-blue-600 text-white px-2 py-1 rounded-lg text-xs font-bold">
-                      ₦{apt.price.toLocaleString()}/night
+                    <div className="absolute top-4 right-4 bg-blue-600 text-white px-2 py-1 rounded-lg text-xs font-bold text-right">
+                      <div>₦{apt.price.toLocaleString()}/night</div>
+                      <div className="text-[10px] font-medium leading-tight text-white/85">Including VAT and service charge</div>
                     </div>
                   </div>
                   <CardHeader>
@@ -365,4 +444,6 @@ export default function ApartmentDetail() {
     </div>
   )
 }
+
+
 

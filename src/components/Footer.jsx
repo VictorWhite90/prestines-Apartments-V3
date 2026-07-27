@@ -1,9 +1,17 @@
 import { Link } from 'react-router-dom'
-import { MapPin, Phone, Mail, Facebook, Twitter, Instagram, Linkedin, Youtube, ArrowRight } from 'lucide-react'
+import { MapPin, Phone, Mail, Facebook, Instagram, ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
+import TikTokIcon from '@/components/icons/TikTokIcon'
+import LocateButton from '@/components/LocateButton'
+import { prestineLocation } from '@/config/location'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
+  const socialLinks = {
+    facebook: 'https://www.facebook.com/share/1LHyhLiKuU/',
+    instagram: 'https://www.instagram.com/prestineapartment?igsh=MXAyZnd1ZWg0MXZrNw==',
+    tiktok: 'https://www.tiktok.com/@prestine.apartment?_r=1&_t=ZS-98DhFnExl4v',
+  }
 
   const quickLinks = [
     { path: '/', label: 'Home' },
@@ -48,39 +56,31 @@ export default function Footer() {
             </p>
             <div className="flex gap-4">
               <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-orange-600 flex items-center justify-center transition-colors"
+                href={socialLinks.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-[#1877F2] text-white hover:scale-105 flex items-center justify-center transition-transform"
                 aria-label="Facebook"
               >
                 <Facebook size={18} />
               </a>
               <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-blue-400 flex items-center justify-center transition-colors"
-                aria-label="Twitter"
-              >
-                <Twitter size={18} />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-pink-600 flex items-center justify-center transition-colors"
+                href={socialLinks.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#F58529] via-[#DD2A7B] to-[#515BD4] text-white hover:scale-105 flex items-center justify-center transition-transform"
                 aria-label="Instagram"
               >
                 <Instagram size={18} />
               </a>
               <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-blue-700 flex items-center justify-center transition-colors"
-                aria-label="LinkedIn"
+                href={socialLinks.tiktok}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-black text-white hover:scale-105 flex items-center justify-center transition-transform"
+                aria-label="TikTok"
               >
-                <Linkedin size={18} />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-red-600 flex items-center justify-center transition-colors"
-                aria-label="YouTube"
-              >
-                <Youtube size={18} />
+                <TikTokIcon brandColor size={18} />
               </a>
             </div>
           </motion.div>
@@ -141,19 +141,19 @@ export default function Footer() {
                 <div className="text-sm">
                   <p className="text-white mb-1">Address</p>
                   <p className="text-gray-400">
-                    Plot 219, Apo Dutse, Apo,<br />
-                    Abuja FCT, Nigeria
+                    {prestineLocation.address}
                   </p>
+                  <LocateButton className="mt-3 px-4 py-2 text-xs" />
                 </div>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-orange-400 flex-shrink-0" />
                 <div className="text-sm">
                   <a
-                    href="tel:+2348029823593"
+                    href="tel:09112300062"
                     className="text-gray-400 hover:text-orange-400 transition-colors"
                   >
-                    (+234) 0802 982 3593
+                    09112300062
                   </a>
                 </div>
               </li>

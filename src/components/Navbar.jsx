@@ -19,9 +19,6 @@ export default function Navbar() {
   const navLinks = [
     { path: '/', label: 'Home' },
     { path: '/apartments', label: 'Apartments' },
-    { path: '/services', label: 'Services' },
-    { path: '/reviews', label: 'Reviews' },
-    { path: '/gallery', label: 'Gallery' },
     { path: '/contact', label: 'Contact' },
     { path: '/admin/login', label: 'Admin' },
   ]
@@ -33,9 +30,9 @@ export default function Navbar() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center gap-6">
-              <a href="tel:+2348029823593" className="flex items-center gap-2 hover:text-orange-300 transition-colors">
+              <a href="tel:09112300062" className="flex items-center gap-2 hover:text-orange-300 transition-colors">
                 <Phone className="h-4 w-4" />
-                <span>(+234) 0802 982 3593</span>
+                <span>09112300062</span>
               </a>
               <a href="mailto:Support@prestineapartment.com" className="flex items-center gap-2 hover:text-orange-300 transition-colors">
                 <Mail className="h-4 w-4" />
@@ -188,12 +185,12 @@ export default function Navbar() {
                     className="mt-6 space-y-3"
                   >
                     <a
-                      href="tel:+2348029823593"
+                      href="tel:09112300062"
                       className="flex items-center gap-3 px-4 py-3 bg-blue-50 hover:bg-blue-100 rounded-lg text-gray-700 transition-colors border border-blue-200"
                       onClick={() => setIsOpen(false)}
                     >
                       <Phone className="h-5 w-5 text-blue-600" />
-                      <span className="font-medium">(+234) 0802 982 3593</span>
+                      <span className="font-medium">09112300062</span>
                     </a>
                     <a
                       href="mailto:Support@prestineapartment.com"

@@ -2,6 +2,7 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
+import LocateButton from './components/LocateButton'
 import ScrollToTop from './components/ScrollToTop'
 import Home from './pages/Home'
 import Apartments from './pages/Apartments'
@@ -13,6 +14,12 @@ import Contact from './pages/Contact'
 import Admin from './pages/Admin'
 import Login from './components/auth/Login'
 import ProtectedAdminRoute from './components/admin/ProtectedAdminRoute'
+import { useParams } from 'react-router-dom'
+
+function ApartmentDetailRoute() {
+  const { slug } = useParams()
+  return <ApartmentDetail key={slug} />
+}
 
 function App() {
   return (
@@ -24,7 +31,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/apartments" element={<Apartments />} />
-            <Route path="/apartments/:slug" element={<ApartmentDetail />} />
+            <Route path="/apartments/:slug" element={<ApartmentDetailRoute />} />
             <Route path="/confirmation" element={<Confirmation />} />
             <Route path="/booking-error" element={<BookingError />} />
             <Route path="/services" element={<div className="min-h-screen flex items-center justify-center"><h1 className="text-4xl">Services</h1></div>} />
@@ -46,6 +53,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        <LocateButton variant="floating" />
         <WhatsAppButton />
       </div>
     </Router>

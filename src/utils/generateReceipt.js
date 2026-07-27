@@ -232,7 +232,7 @@ export const generateReceipt = async (booking) => {
   doc.setFont('helvetica', 'normal')
   doc.text('Thank you for choosing Prestine Apartments. We look forward to hosting you!', pageW / 2, pageH - 12, { align: 'center' })
   doc.setFont('helvetica', 'bold')
-  doc.text('Support@prestineapartment.com   |   +234 0802 982 3593', pageW / 2, pageH - 6, { align: 'center' })
+  doc.text('Support@prestineapartment.com   |   09112300062', pageW / 2, pageH - 6, { align: 'center' })
 
   // ── DOWNLOAD ─────────────────────────────────────────────────────────────
   const safeName = `${booking.first_name || ''}-${booking.last_name || ''}`.replace(/\s+/g, '-')

@@ -30,7 +30,7 @@ export default function BookingError() {
           </p>
           <div className="space-y-4">
             <a
-              href="https://wa.me/2348029823593"
+              href="https://wa.me/2349112300062"
               target="_blank"
               rel="noopener noreferrer"
               className="block"

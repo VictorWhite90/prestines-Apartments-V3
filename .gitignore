@@ -32,3 +32,6 @@ dist-ssr
 serviceAccountKey.json
 *-service-account-key.json
 firebase-service-account*.json
+
+# Windows executables should not be committed
+public/images/*.exe
