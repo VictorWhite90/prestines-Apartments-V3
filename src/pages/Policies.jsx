@@ -62,7 +62,7 @@ export default function Policies() {
           transition={{ duration: 0.6 }}
         >
           <Card className="shadow-xl">
-            <CardHeader className="bg-orange-600 text-white">
+            <CardHeader className="bg-gold-600 text-white">
               <CardTitle className="text-3xl md:text-4xl font-bold text-center">
                 Booking Policies
               </CardTitle>
@@ -86,7 +86,7 @@ export default function Policies() {
                     transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
                     className="flex gap-4"
                   >
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-orange-600 text-white flex items-center justify-center font-bold text-sm">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gold-600 text-white flex items-center justify-center font-bold text-sm">
                       {policy.number}
                     </div>
                     <p className="text-gray-700 leading-relaxed flex-1 pt-1">
@@ -115,12 +115,12 @@ export default function Policies() {
               >
                 <Button 
                   onClick={() => setIsModalOpen(true)}
-                  className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white px-8 py-6 text-lg"
+                  className="w-full sm:w-auto bg-gold-600 hover:bg-gold-700 text-white px-8 py-6 text-lg"
                 >
                   Book Reservation
                 </Button>
                 <Link to="/">
-                  <Button variant="outline" className="w-full sm:w-auto border-orange-600 text-orange-600 hover:bg-orange-50 px-8 py-6 text-lg">
+                  <Button variant="outline" className="w-full sm:w-auto border-gold-600 text-gold-600 hover:bg-gold-50 px-8 py-6 text-lg">
                     Back to Home
                   </Button>
                 </Link>
@@ -178,7 +178,7 @@ export default function Policies() {
                         const apt = apartments.find(a => a.id === e.target.value)
                         if (apt) setSelectedApartment(apt)
                       }}
-                      className="w-full rounded-md border border-input bg-white text-gray-900 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-600"
+                      className="w-full rounded-md border border-input bg-white text-gray-900 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-600"
                     >
                       {apartments.map((apt) => (
                         <option key={apt.id} value={apt.id}>
@@ -201,5 +201,3 @@ export default function Policies() {
     </div>
   )
 }
-
-

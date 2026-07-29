@@ -36,8 +36,8 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <Card className="h-full">
-              <CardHeader className="bg-orange-50 border-b border-orange-200">
-                <CardTitle className="text-orange-600">Contact Information</CardTitle>
+              <CardHeader className="bg-gold-50 border-b border-gold-200">
+                <CardTitle className="text-gold-600">Contact Information</CardTitle>
               </CardHeader>
               <CardContent className="p-8">
                 <div className="space-y-6">
@@ -47,8 +47,8 @@ export default function Contact() {
                     transition={{ delay: 0.3 }}
                     className="flex items-start gap-4"
                   >
-                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center">
-                      <MapPin className="text-orange-600" size={24} />
+                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center">
+                      <MapPin className="text-gold-600" size={24} />
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-1">Address</h3>
@@ -65,12 +65,12 @@ export default function Contact() {
                     transition={{ delay: 0.4 }}
                     className="flex items-start gap-4"
                   >
-                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center">
-                      <Phone className="text-orange-600" size={24} />
+                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center">
+                      <Phone className="text-gold-600" size={24} />
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-1">Phone</h3>
-                      <a href="tel:09112300062" className="text-orange-600 hover:text-orange-700 transition-colors">
+                      <a href="tel:09112300062" className="text-gold-600 hover:text-gold-700 transition-colors">
                         09112300062
                       </a>
                     </div>
@@ -82,12 +82,12 @@ export default function Contact() {
                     transition={{ delay: 0.5 }}
                     className="flex items-start gap-4"
                   >
-                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center">
-                      <Mail className="text-orange-600" size={24} />
+                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center">
+                      <Mail className="text-gold-600" size={24} />
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
-                      <a href="mailto:Support@prestineapartment.com" className="text-orange-600 hover:text-orange-700 transition-colors">
+                      <a href="mailto:Support@prestineapartment.com" className="text-gold-600 hover:text-gold-700 transition-colors">
                         Support@prestineapartment.com
                       </a>
                     </div>
@@ -143,16 +143,16 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <Card className="h-full">
-              <CardHeader className="bg-orange-50 border-b border-orange-200">
-                <CardTitle className="text-orange-600 flex items-center gap-2">
+              <CardHeader className="bg-gold-50 border-b border-gold-200">
+                <CardTitle className="text-gold-600 flex items-center gap-2">
                   <MapPin size={24} />
                   Locate Prestine Apartments
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-8">
-                <div className="flex h-full min-h-[360px] flex-col justify-between rounded-xl border border-orange-100 bg-gradient-to-br from-white via-orange-50/40 to-blue-50/50 p-6">
+                <div className="flex h-full min-h-[360px] flex-col justify-between rounded-xl border border-gold-100 bg-gradient-to-br from-white via-gold-50/40 to-brand-50/50 p-6">
                   <div>
-                    <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-orange-100 text-orange-600">
+                    <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-gold-100 text-gold-600">
                       <Navigation size={26} />
                     </div>
                     <h3 className="mb-3 font-serif text-3xl text-gray-950">Need directions?</h3>
@@ -189,8 +189,8 @@ export default function Contact() {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <Card>
-            <CardHeader className="bg-orange-50 border-b border-orange-200">
-              <CardTitle className="text-orange-600">Business Hours</CardTitle>
+            <CardHeader className="bg-gold-50 border-b border-gold-200">
+              <CardTitle className="text-gold-600">Business Hours</CardTitle>
             </CardHeader>
             <CardContent className="p-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">

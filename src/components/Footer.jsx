@@ -16,9 +16,6 @@ export default function Footer() {
   const quickLinks = [
     { path: '/', label: 'Home' },
     { path: '/apartments', label: 'Apartments' },
-    { path: '/services', label: 'Services' },
-    { path: '/reviews', label: 'Reviews' },
-    { path: '/gallery', label: 'Gallery' },
     { path: '/contact', label: 'Contact' },
   ]
 
@@ -32,7 +29,7 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="bg-slate-900 text-gray-300 mt-20">
+    <footer className="bg-[#4A000C] text-gray-300 mt-20">
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
@@ -45,9 +42,9 @@ export default function Footer() {
           >
             <Link to="/" className="flex items-center gap-3 mb-6">
               <img 
-                src="/images/prestine ;ogo.png" 
+                src="/new prestine images/logonew.png"
                 alt="Prestine Apartments" 
-                className="h-12 w-auto object-contain"
+                className="h-20 w-auto max-w-[210px] object-contain"
               />
             </Link>
             <p className="text-sm leading-relaxed mb-6 text-gray-400">
@@ -98,7 +95,7 @@ export default function Footer() {
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className="flex items-center gap-2 text-sm hover:text-orange-400 transition-colors group"
+                    className="flex items-center gap-2 text-sm hover:text-gold-400 transition-colors group"
                   >
                     <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                     <span>{link.label}</span>
@@ -119,7 +116,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {services.map((service, index) => (
                 <li key={index}>
-                  <span className="text-sm hover:text-blue-400 transition-colors cursor-pointer">
+                  <span className="text-sm hover:text-brand-400 transition-colors cursor-pointer">
                     {service}
                   </span>
                 </li>
@@ -137,7 +134,7 @@ export default function Footer() {
             <h3 className="text-white font-semibold text-lg mb-6 font-serif">Contact Us</h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-orange-400 mt-1 flex-shrink-0" />
+                <MapPin className="h-5 w-5 text-gold-400 mt-1 flex-shrink-0" />
                 <div className="text-sm">
                   <p className="text-white mb-1">Address</p>
                   <p className="text-gray-400">
@@ -147,22 +144,22 @@ export default function Footer() {
                 </div>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="h-5 w-5 text-orange-400 flex-shrink-0" />
+                <Phone className="h-5 w-5 text-gold-400 flex-shrink-0" />
                 <div className="text-sm">
                   <a
                     href="tel:09112300062"
-                    className="text-gray-400 hover:text-orange-400 transition-colors"
+                    className="text-gray-400 hover:text-gold-400 transition-colors"
                   >
                     09112300062
                   </a>
                 </div>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="h-5 w-5 text-orange-400 flex-shrink-0" />
+                <Mail className="h-5 w-5 text-gold-400 flex-shrink-0" />
                 <div className="text-sm">
                   <a
                     href="mailto:Support@prestineapartment.com"
-                    className="text-gray-400 hover:text-blue-400 transition-colors break-all"
+                    className="text-gray-400 hover:text-brand-400 transition-colors break-all"
                   >
                     Support@prestineapartment.com
                   </a>
@@ -182,10 +179,10 @@ export default function Footer() {
               <span className="text-white font-semibold">Prestine Apartments</span>. All rights reserved.
             </p>
             <div className="flex gap-6">
-              <Link to="/policies" className="text-gray-400 hover:text-blue-400 transition-colors">
+              <Link to="/policies" className="text-gray-400 hover:text-brand-400 transition-colors">
                 Privacy Policy
               </Link>
-              <Link to="/policies" className="text-gray-400 hover:text-blue-400 transition-colors">
+              <Link to="/policies" className="text-gray-400 hover:text-brand-400 transition-colors">
                 Terms of Service
               </Link>
             </div>

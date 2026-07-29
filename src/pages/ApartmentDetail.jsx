@@ -5,9 +5,54 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import ReservationForm from '@/components/ReservationForm'
 import { useState, useEffect } from 'react'
-import { ChevronLeft, ChevronRight, MapPin } from 'lucide-react'
+import {
+  AirVent,
+  Bath,
+  BedDouble,
+  Car,
+  ChevronLeft,
+  ChevronRight,
+  CookingPot,
+  House,
+  KeyRound,
+  MapPin,
+  ShieldCheck,
+  Sparkles,
+  Tv,
+  WashingMachine,
+  Wifi,
+} from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { initAllTracking, trackFacebookPageView, trackGooglePageView } from '@/utils/tracking'
+
+const getFeatureIcon = (feature) => {
+  const label = feature.toLowerCase()
+  if (label.includes('kitchen') || label.includes('dining')) return CookingPot
+  if (label.includes('bedroom') || label.includes('sleep')) return BedDouble
+  if (label.includes('bathroom')) return Bath
+  if (label.includes('laundry')) return WashingMachine
+  if (label.includes('location')) return MapPin
+  if (label.includes('living') || label.includes('studio') || label.includes('waiting')) return House
+  return Sparkles
+}
+
+const stayEssentials = [
+  { label: 'Air Conditioning', icon: AirVent },
+  { label: 'Flat-Screen TV', icon: Tv },
+  { label: 'Complimentary WiFi', icon: Wifi },
+  { label: 'Secure Parking', icon: Car },
+  { label: '24-Hour Security', icon: ShieldCheck },
+  { label: 'Private Access', icon: KeyRound },
+]
+
+const includedServices = [
+  'Guest support',
+  'Secure on-site parking',
+  'Housekeeping support',
+  'Fresh linen and towels',
+  '24-hour electricity',
+  'WiFi access',
+]
 
 export default function ApartmentDetail() {
   const { slug } = useParams()
@@ -206,7 +251,7 @@ export default function ApartmentDetail() {
             <div className="flex flex-col gap-2">
               {apartment.originalPrice && (
                 <div className="relative overflow-hidden bg-gray-500/20 text-gray-900 px-4 py-3 rounded-lg inline-block mb-2 group">
-                  <div className="absolute inset-0 bg-blue-600 -translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-in-out"></div>
+                  <div className="absolute inset-0 bg-brand-600 -translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-in-out"></div>
                   <div className="relative z-10 flex flex-col gap-1 transition-colors duration-300">
                     <div className="flex items-center gap-2 flex-wrap">
                       <span className="text-base md:text-lg font-bold group-hover:text-white transition-colors duration-300">PROMO: ₦{apartment.price.toLocaleString()}/night</span>
@@ -220,7 +265,7 @@ export default function ApartmentDetail() {
                   {apartment.originalPrice ? (
                     <>
                       <div className="flex items-baseline gap-2">
-                        <p className="text-2xl md:text-3xl font-bold text-blue-600">
+                        <p className="text-2xl md:text-3xl font-bold text-brand-600">
                           ₦{apartment.price.toLocaleString()}/night
                         </p>
                         <p className="text-lg md:text-xl font-bold text-gray-400 line-through">
@@ -230,7 +275,7 @@ export default function ApartmentDetail() {
                     </>
                   ) : (
                     <>
-                      <p className="text-2xl md:text-3xl font-bold text-blue-600">
+                      <p className="text-2xl md:text-3xl font-bold text-brand-600">
                         ₦{apartment.price.toLocaleString()}/night
                       </p>
                     </>
@@ -245,7 +290,7 @@ export default function ApartmentDetail() {
               onClick={() => {
                 document.getElementById('reservation-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
               }}
-              className="relative overflow-hidden bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 text-base sm:px-8 sm:py-6 sm:text-lg"
+              className="relative overflow-hidden bg-brand-600 hover:bg-brand-700 text-white px-4 py-3 text-base sm:px-8 sm:py-6 sm:text-lg"
             >
               Book Now
               {/* Sparkling Star */}
@@ -282,20 +327,38 @@ export default function ApartmentDetail() {
               </CardContent>
             </Card>
 
-            {/* Features */}
+            {/* Amenities and services */}
             <Card>
               <CardHeader>
-                <CardTitle>Features</CardTitle>
+                <CardTitle>Amenities</CardTitle>
+                <CardDescription>Everything you need for a comfortable stay.</CardDescription>
               </CardHeader>
               <CardContent>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {apartment.features.map((feature, index) => (
-                    <li key={index} className="flex items-center gap-2">
-                      <span className="w-2 h-2 bg-orange-600 rounded-full"></span>
-                      <span className="text-gray-700">{feature}</span>
-                    </li>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-8">
+                  {[...apartment.features.map((feature) => ({
+                    label: feature,
+                    icon: getFeatureIcon(feature),
+                  })), ...stayEssentials].map(({ label, icon: Icon }) => (
+                    <div key={label} className="group flex flex-col items-center text-center">
+                      <div className="mb-3 flex h-16 w-16 items-center justify-center text-[#4A000C] transition-transform duration-300 group-hover:-translate-y-1">
+                        <Icon className="h-12 w-12 stroke-[1.35]" aria-hidden="true" />
+                      </div>
+                      <span className="text-sm font-medium text-gray-700">{label}</span>
+                    </div>
                   ))}
-                </ul>
+                </div>
+
+                <div className="mt-10 border-t border-gray-200 pt-7">
+                  <h3 className="mb-5 font-serif text-xl font-semibold text-[#4A000C]">Services</h3>
+                  <ul className="grid grid-cols-1 gap-x-8 gap-y-3 text-sm text-gray-700 sm:grid-cols-2 md:grid-cols-3">
+                    {includedServices.map((service) => (
+                      <li key={service} className="flex items-center gap-2">
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#D9A632]" />
+                        {service}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </CardContent>
             </Card>
 
@@ -347,7 +410,7 @@ export default function ApartmentDetail() {
             className="text-center mb-8"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2 font-serif flex items-center justify-center gap-2">
-              <MapPin className="text-orange-600" size={32} />
+              <MapPin className="text-gold-600" size={32} />
               Locate Us on Map
             </h2>
             <p className="text-gray-600">Plot 219 Martin Ejembi Crescent, Apo-Dutse, Abuja.</p>
@@ -380,7 +443,7 @@ export default function ApartmentDetail() {
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 font-serif">
               Check Out Other Apartments
             </h2>
-            <div className="w-24 h-1 bg-orange-600 mx-auto"></div>
+            <div className="w-24 h-1 bg-gold-600 mx-auto"></div>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -402,14 +465,14 @@ export default function ApartmentDetail() {
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                       loading="lazy"
                     />
-                    <div className="absolute top-4 right-4 bg-blue-600 text-white px-2 py-1 rounded-lg text-xs font-bold text-right">
+                    <div className="absolute top-4 right-4 bg-brand-600 text-white px-2 py-1 rounded-lg text-xs font-bold text-right">
                       <div>₦{apt.price.toLocaleString()}/night</div>
                       <div className="text-[10px] font-medium leading-tight text-white/85">Including VAT and service charge</div>
                     </div>
                   </div>
                   <CardHeader>
                     <CardTitle className="text-xl font-serif">{apt.name}</CardTitle>
-                    <CardDescription className="flex items-center gap-2 text-orange-600">
+                    <CardDescription className="flex items-center gap-2 text-gold-600">
                       <MapPin size={16} />
                       {apt.location}
                     </CardDescription>
@@ -429,7 +492,7 @@ export default function ApartmentDetail() {
                           e.stopPropagation()
                           navigate(`/apartments/${apt.slug}`)
                         }}
-                        className="bg-blue-600 hover:bg-blue-700 text-white"
+                        className="bg-brand-600 hover:bg-brand-700 text-white"
                       >
                         View Details
                       </Button>
@@ -444,6 +507,3 @@ export default function ApartmentDetail() {
     </div>
   )
 }
-
-
-

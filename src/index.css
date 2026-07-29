@@ -10,8 +10,8 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 350 100% 28.2%;
+    --primary-foreground: 43 72% 92%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
@@ -22,7 +22,7 @@
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
+    --ring: 350 100% 28.2%;
     --radius: 0.75rem;
   }
 }
@@ -97,7 +97,7 @@ body {
 
 /* Text selection */
 ::selection {
-  @apply bg-blue-200 text-blue-900;
+  @apply bg-gold-200 text-brand-900;
 }
 
 /* Line clamp utilities */
@@ -146,7 +146,7 @@ body {
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
-  .hover\:shadow-blue-500\/50:hover {
+  .hover\:shadow-brand-500\/50:hover {
     --tw-shadow-color: rgb(59 130 246 / 0.08);
     --tw-shadow: var(--tw-shadow-colored);
   }
@@ -197,7 +197,7 @@ body {
 
 /* Gradient text */
 .gradient-text {
-  @apply bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-brand-700 via-brand-600 to-gold-500 bg-clip-text text-transparent;
 }
 
 /* Glass morphism effect */
@@ -212,7 +212,7 @@ body {
 }
 
 .react-datepicker__header {
-  @apply bg-orange-600 text-white rounded-t-lg;
+  @apply bg-gold-600 text-white rounded-t-lg;
 }
 
 .react-datepicker__current-month {
@@ -242,15 +242,15 @@ body {
 .react-datepicker__day--selected,
 .react-datepicker__day--in-range,
 .react-datepicker__day--in-selecting-range {
-  @apply bg-orange-600 text-white;
+  @apply bg-gold-600 text-white;
 }
 
 .react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range) {
-  @apply bg-orange-200 text-orange-900;
+  @apply bg-gold-200 text-gold-900;
 }
 
 .react-datepicker__day:hover:not(.react-datepicker__day--disabled):not(.react-datepicker__day--selected) {
-  @apply bg-orange-100 text-orange-900;
+  @apply bg-gold-100 text-gold-900;
 }
 
 .react-datepicker__navigation-icon::before {

@@ -33,7 +33,7 @@ export default function ProtectedAdminRoute({ children }) {
           animate={{ opacity: 1 }}
           className="text-center"
         >
-          <Loader2 className="h-8 w-8 animate-spin text-orange-600 mx-auto mb-4" />
+          <Loader2 className="h-8 w-8 animate-spin text-gold-600 mx-auto mb-4" />
           <p className="text-gray-600">Verifying access...</p>
         </motion.div>
       </div>
@@ -81,7 +81,7 @@ export default function ProtectedAdminRoute({ children }) {
             </button>
             <a
               href="/"
-              className="inline-block px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-medium transition-colors"
+              className="inline-block px-6 py-3 bg-gold-600 hover:bg-gold-700 text-white rounded-lg font-medium transition-colors"
             >
               Go to Home
             </a>
@@ -94,4 +94,3 @@ export default function ProtectedAdminRoute({ children }) {
   // User is authenticated and is admin, render children
   return children
 }
-

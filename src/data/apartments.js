@@ -1,7 +1,7 @@
 export const apartments = [
   {
     id: 'prestige-suite',
-    name: 'Prestige-Suite-2-Bedroom-Apartment-Lugbe',
+    name: 'Two Bedroom Executive Apartment - Lugbe',
     slug: 'prestige-suite-2-bedroom-apartment-lugbe',
     location: 'Lugbe',
     price: 74906,
@@ -36,7 +36,7 @@ export const apartments = [
   },
   {
     id: 'premium-apartment',
-    name: 'Premium Royale 1-Bedroom Apartment - Apo',
+    name: 'Deluxe Royal One-Bedroom Apartment - Apo',
     slug: 'premium-royale-1-bedroom-apartment-apo',
     location: 'Apo',
     price: 150000,
@@ -51,7 +51,7 @@ export const apartments = [
       '/new prestine images/premuimbedroomwithpillows.jpg',
       '/new prestine images/premuim bathroom.png',
     ],
-    description: 'Experience elevated living in our Premium One-Bedroom Apartment, thoughtfully designed for guests who appreciate comfort with a touch of luxury. This beautifully curated space features elegant décor, stylish throw pillows, cozy blankets, decorative accents, sophisticated flower arrangements, plush rugs, and carefully selected finishing touches that create a warm and inviting atmosphere. Whether you\'re visiting for business or leisure, the Premium Apartment offers a refined stay where comfort meets elegance, making every moment feel special and memorable. Perfect for guests seeking a more luxurious, stylish, and relaxing home-away-from-home experience.',
+    description: 'Experience elevated living in our Deluxe Royal One-Bedroom Apartment, thoughtfully designed for guests who appreciate comfort with a touch of luxury. This beautifully curated space features elegant décor, stylish throw pillows, cozy blankets, decorative accents, sophisticated flower arrangements, plush rugs, and carefully selected finishing touches that create a warm and inviting atmosphere. Whether you\'re visiting for business or leisure, the Deluxe Royal offers a refined stay where comfort meets elegance, making every moment feel special and memorable. Perfect for guests seeking a more luxurious, stylish, and relaxing home-away-from-home experience.',
     features: [
       'Modern Living Room',
       'Fully Equipped Kitchen',
@@ -70,7 +70,7 @@ export const apartments = [
   },
   {
     id: 'standard-apartment',
-    name: 'Standard Comfort 1-Bedroom Apartment - Apo',
+    name: 'Premium Luxury One-Bedroom Apartment - Apo',
     slug: 'standard-comfort-1-bedroom-apartment-apo',
     location: 'Apo',
     price: 120000,
@@ -84,7 +84,7 @@ export const apartments = [
       '/new prestine images/premuimbedroom1.jpg',
       '/new prestine images/standard1bedroomapartment/palour and dinning.jpg',
     ],
-    description: 'Our Standard One-Bedroom Apartment offers a comfortable, clean, and functional living space designed to meet your everyday needs. Featuring a spacious bedroom, a cozy living area, and essential amenities, this apartment provides a relaxing environment for both short and extended stays. Simple, practical, and welcoming, the Standard Apartment delivers the comfort and convenience you need at an excellent value. Perfect for guests looking for a comfortable and affordable stay without compromising on quality and convenience.',
+    description: 'Our Premium Luxury One-Bedroom Apartment offers a comfortable, clean, and functional living space designed to meet your everyday needs. Featuring a spacious bedroom, a cozy living area, and essential amenities, this apartment provides a relaxing environment for both short and extended stays. Simple, practical, and welcoming, the Premium Luxury Apartment delivers the comfort and convenience you need at an excellent value. Perfect for guests looking for a comfortable stay without compromising on quality and convenience.',
     features: [
       'Modern Living Room',
       'Fully Equipped Kitchen',
@@ -103,7 +103,7 @@ export const apartments = [
   },
   {
     id: 'classic-studio',
-    name: 'Classic Studio Apartment - Apo',
+    name: 'Studio Deluxe - Apo',
     slug: 'classic-studio-apartment-apo',
     location: 'Apo',
     price: 75000,
@@ -118,7 +118,7 @@ export const apartments = [
       '/images/prestineAprtKitchen.jpg',
       '/images/prestineAprtoutside3.jpg',
     ],
-    description: 'Discover comfort and style in this thoughtfully designed studio apartment, ideal for solo travelers or couples seeking an intimate and convenient space. This charming apartment features an open-plan layout that maximizes space and functionality, with a cozy sleeping area, compact yet fully equipped kitchen with modern appliances, and a contemporary bathroom with premium fixtures. The interior showcases tasteful decor, smart storage solutions, and all essential amenities for a comfortable stay. Its strategic location in Apo offers easy access to shopping centers, restaurants, cafes, and transportation hubs, making it perfect for both short and extended stays. Whether you\'re in town for business or leisure, this Classic Studio provides a welcoming retreat in the heart of Abuja.',
+    description: 'Discover comfort and style in this thoughtfully designed Studio Deluxe, ideal for solo travelers or couples seeking an intimate and convenient space. This charming apartment features an open-plan layout that maximizes space and functionality, with a cozy sleeping area, compact yet fully equipped kitchen with modern appliances, and a contemporary bathroom with premium fixtures. The interior showcases tasteful decor, smart storage solutions, and all essential amenities for a comfortable stay. Its strategic location in Apo offers easy access to shopping centers, restaurants, cafes, and transportation hubs, making it perfect for both short and extended stays. Whether you\'re in town for business or leisure, this Studio Deluxe provides a welcoming retreat in the heart of Abuja.',
     features: [
       'Modern Studio Design',
       'Fully Equipped Kitchen',
@@ -137,7 +137,7 @@ export const apartments = [
   },
   {
     id: 'delux-royal',
-    name: 'Deluxe Royale 4-Bedroom Apartment - Apo',
+    name: 'Four Bedroom Premier Apartment - Apo',
     slug: 'deluxe-royale-4-bedroom-apartment-apo',
     location: 'Apo',
     price: 279650,
@@ -154,7 +154,7 @@ export const apartments = [
       '/images/delux-new7.jpg',
       '/images/delux-new9.jpg',
     ],
-    description: 'Indulge in the epitome of luxury living with this magnificent 4-bedroom apartment, designed to accommodate large families or groups in unparalleled comfort and style. This expansive residence features generous living spaces with premium furnishings, a state-of-the-art kitchen equipped with modern appliances and ample workspace, four beautifully appointed bedrooms each designed for rest and relaxation, and multiple elegant bathrooms with high-end fixtures. The apartment boasts sophisticated interior design, high-quality finishes throughout, and thoughtful amenities that cater to every need. Located in the prestigious Apo area, it offers an exceptional setting for creating lasting memories, whether you\'re hosting family gatherings, business retreats, or extended stays with multiple guests. With its prime location near major attractions, business districts, and the airport, the Deluxe Royale 4-Bedroom Apartment represents the ultimate in luxury accommodation.',
+    description: 'Indulge in the epitome of luxury living with this magnificent 4-bedroom apartment, designed to accommodate large families or groups in unparalleled comfort and style. This expansive residence features generous living spaces with premium furnishings, a state-of-the-art kitchen equipped with modern appliances and ample workspace, four beautifully appointed bedrooms each designed for rest and relaxation, and multiple elegant bathrooms with high-end fixtures. The apartment boasts sophisticated interior design, high-quality finishes throughout, and thoughtful amenities that cater to every need. Located in the prestigious Apo area, it offers an exceptional setting for creating lasting memories, whether you\'re hosting family gatherings, business retreats, or extended stays with multiple guests. With its prime location near major attractions, business districts, and the airport, the Four Bedroom Premier Apartment represents the ultimate in luxury accommodation.',
     features: [
       'Guest Waiting Area',
       'Dual Living Rooms',
@@ -173,5 +173,3 @@ export const apartments = [
     disableDateBlocking: false,
   },
 ];
-
-

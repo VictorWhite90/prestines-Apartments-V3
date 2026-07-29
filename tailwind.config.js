@@ -45,19 +45,32 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Modern Blue Gradient Theme
+        // Prestine Apartments — burgundy and gold brand system
         brand: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
-          950: '#172554',
+          50: '#fff5f5',
+          100: '#ffe3e3',
+          200: '#ffc9c9',
+          300: '#f89a9a',
+          400: '#e65f65',
+          500: '#c92f3d',
+          600: '#ad1025',
+          700: '#900018',
+          800: '#730013',
+          900: '#57000e',
+          950: '#350008',
+        },
+        gold: {
+          50: '#fffaf0',
+          100: '#fff1cf',
+          200: '#ffe29a',
+          300: '#f5ca5c',
+          400: '#e7b43b',
+          500: '#d9a632',
+          600: '#9f6c19',
+          700: '#815315',
+          800: '#744a19',
+          900: '#603d19',
+          950: '#37200b',
         },
         ocean: {
           50: '#f0fdfa',
@@ -121,8 +134,8 @@ export default {
           '50%': { transform: 'translateY(-10px)' },
         },
         glow: {
-          '0%, 100%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.5)' },
-          '50%': { boxShadow: '0 0 40px rgba(59, 130, 246, 0.8)' },
+          '0%, 100%': { boxShadow: '0 0 20px rgba(144, 0, 24, 0.45)' },
+          '50%': { boxShadow: '0 0 40px rgba(144, 0, 24, 0.72)' },
         },
         slideInRight: {
           '0%': { transform: 'translateX(100%)', opacity: '0' },
@@ -151,11 +164,11 @@ export default {
         pulseGlow: {
           '0%, 100%': {
             opacity: '1',
-            boxShadow: '0 0 20px rgba(37, 99, 235, 0.4), 0 0 40px rgba(37, 99, 235, 0.2)'
+            boxShadow: '0 0 20px rgba(144, 0, 24, 0.4), 0 0 40px rgba(144, 0, 24, 0.2)'
           },
           '50%': {
             opacity: '0.8',
-            boxShadow: '0 0 40px rgba(37, 99, 235, 0.6), 0 0 80px rgba(37, 99, 235, 0.3)'
+            boxShadow: '0 0 40px rgba(144, 0, 24, 0.6), 0 0 80px rgba(144, 0, 24, 0.3)'
           },
         },
       },
@@ -163,9 +176,9 @@ export default {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         'shimmer-gradient': 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)',
-        'gradient-mesh': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        'blue-gradient': 'linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%)',
-        'text-gradient': 'linear-gradient(90deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%)',
+        'gradient-mesh': 'linear-gradient(135deg, #900018 0%, #57000e 100%)',
+        'blue-gradient': 'linear-gradient(135deg, #900018 0%, #ad1025 50%, #d9a632 100%)',
+        'text-gradient': 'linear-gradient(90deg, #900018 0%, #ad1025 55%, #d9a632 100%)',
       },
       backgroundSize: {
         '200%': '200% 200%',
@@ -175,5 +188,3 @@ export default {
   },
   plugins: [],
 }
-
-

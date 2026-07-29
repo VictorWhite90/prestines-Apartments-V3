@@ -96,7 +96,7 @@ export default function Apartments() {
             </div>
 
             <Link to={`/apartments/${heroApartments[currentHeroSlide]?.slug}`}>
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-sm font-semibold shadow-lg hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105">
+              <Button className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 text-sm font-semibold shadow-lg hover:shadow-brand-500/50 transition-all duration-300 hover:scale-105">
                 View Details & Book Now
                 <ArrowRight className="ml-1 h-4 w-4" />
               </Button>
@@ -184,40 +184,17 @@ export default function Apartments() {
                         loading="lazy"
                       />
 
-                      {/* Promo Sales Banner - Pure red */}
-                      {apartment.originalPrice && (
-                        <motion.div
-                          initial={{ scale: 0, rotate: -12 }}
-                          animate={{ scale: 1, rotate: -3 }}
-                          transition={{ type: "spring", stiffness: 200, damping: 10 }}
-                          className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1.5 rounded-lg shadow-2xl transform z-20"
-                        >
-                          <span className="text-xs font-bold uppercase tracking-wide">
-                            {Math.round(((apartment.originalPrice - apartment.price) / apartment.originalPrice) * 100)}% OFF
-                          </span>
-                        </motion.div>
-                      )}
-
-                      <div className={`absolute ${apartment.originalPrice ? 'top-16' : 'top-4'} left-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full`}>
+                      <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full">
                         <div className="flex items-center gap-1">
                           <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                           <span className="text-sm font-bold text-gray-900">{apartment.rating || 4.9}</span>
                         </div>
                       </div>
-                      <div className="absolute top-4 right-6 bg-blue-600 text-white px-3 py-1.5 rounded-lg shadow-2xl">
+                      <div className="absolute top-4 right-6 bg-brand-600 text-white px-3 py-1.5 rounded-lg shadow-2xl">
                         <div className="flex flex-col items-end">
-                          {apartment.originalPrice ? (
-                            <>
-                              <span className="text-xs line-through opacity-75">₦{apartment.originalPrice.toLocaleString()}/night</span>
-                              <span className="text-sm font-bold drop-shadow-lg">₦{apartment.price.toLocaleString()}/night</span>
-                            </>
-                          ) : (
-                            <>
-                              <span className="text-sm font-bold drop-shadow-lg">
-                                ₦{apartment.price.toLocaleString()}/night
-                              </span>
-                            </>
-                          )}
+                          <span className="text-sm font-bold drop-shadow-lg">
+                            ₦{apartment.price.toLocaleString()}/night
+                          </span>
                           <span className="text-[10px] font-medium leading-tight text-white/85">
                             Including VAT and service charge
                           </span>
@@ -247,56 +224,86 @@ export default function Apartments() {
                     }}
                     className={`space-y-6 max-w-[95%] md:max-w-[90%] mx-auto ${!isEven ? 'lg:col-start-1' : ''}`}
                   >
-                    <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-50 via-white to-blue-50 p-6 border-2 border-blue-100 shadow-lg hover:shadow-xl transition-all duration-300 group">
-                      <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700"></div>
-                      <h2 className="relative text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 break-words font-serif">
+                    <div className="relative overflow-hidden rounded-xl bg-[#4A000C] p-5 border border-[#D9A632]/35 shadow-lg hover:shadow-xl transition-all duration-300 group">
+                      <svg
+                        className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.14]"
+                        aria-hidden="true"
+                      >
+                        <defs>
+                          <pattern
+                            id={`apartment-description-fan-${apartment.id}`}
+                            width="144"
+                            height="96"
+                            patternUnits="userSpaceOnUse"
+                          >
+                            <path d="M0 96 Q36 24 72 96 Q108 24 144 96" fill="none" stroke="#D9A632" strokeWidth="1.2" />
+                            <path d="M0 96 Q72 -24 144 96" fill="none" stroke="#D9A632" strokeWidth="1.2" />
+                            <path d="M36 96 Q72 48 108 96" fill="none" stroke="#D9A632" strokeWidth="1" />
+                            <path d="M18 96 Q72 8 126 96" fill="none" stroke="#D9A632" strokeWidth="0.8" />
+                          </pattern>
+                        </defs>
+                        <rect
+                          width="100%"
+                          height="100%"
+                          fill={`url(#apartment-description-fan-${apartment.id})`}
+                        />
+                      </svg>
+                      <h2 className="relative text-xl md:text-2xl lg:text-3xl font-medium text-white mb-2 break-words font-serif leading-tight">
                         {apartment.name}
                       </h2>
-                      <div className="relative mb-4">
-                        <p className="font-serif text-2xl md:text-3xl font-bold italic text-gray-900">
+                      <div className="relative mb-3">
+                        <p className="font-serif text-xl md:text-2xl font-medium italic text-[#D9A632]">
                           ₦{apartment.price.toLocaleString()}/night
                         </p>
-                        <p className="text-sm font-medium text-gray-600">
+                        <p className="font-sans text-xs font-normal text-white/70">
                           Including VAT and service charge
                         </p>
                       </div>
-                      <div className="relative flex items-center gap-2 text-gray-600 mb-4">
-                        <MapPin className="h-5 w-5 text-blue-600" />
-                        <span className="text-lg">{apartment.location}</span>
+                      <div className="relative flex items-center gap-2 text-white/80 mb-3">
+                        <MapPin className="h-4 w-4 text-[#D9A632]" />
+                        <span className="font-sans text-sm">{apartment.location}</span>
                       </div>
 
-                      <p className="relative text-base md:text-lg text-gray-700 leading-relaxed break-words">
+                      <p
+                        className="relative font-sans text-sm font-normal text-white/80 leading-6 break-words"
+                        style={{
+                          display: '-webkit-box',
+                          WebkitBoxOrient: 'vertical',
+                          WebkitLineClamp: 5,
+                          overflow: 'hidden',
+                        }}
+                      >
                         {apartment.description}
                       </p>
                     </div>
 
                     {/* Features Grid */}
-                    <div className="grid grid-cols-2 gap-4 p-6 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl border-2 border-blue-100 shadow-md">
+                    <div className="grid grid-cols-2 gap-4 p-6 bg-gradient-to-br from-brand-50 to-cyan-50 rounded-xl border-2 border-brand-100 shadow-md">
                       <div className="flex items-center gap-2 text-sm text-gray-700">
-                        <Users className="h-5 w-5 text-blue-600" />
+                        <Users className="h-5 w-5 text-brand-600" />
                         <span><strong>{apartment.details.maxGuests}</strong> Guests</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm text-gray-700">
-                        <Bed className="h-5 w-5 text-blue-600" />
+                        <Bed className="h-5 w-5 text-brand-600" />
                         <span>{apartment.details.bedSize}</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm text-gray-700">
-                        <Bath className="h-5 w-5 text-blue-600" />
+                        <Bath className="h-5 w-5 text-brand-600" />
                         <span>{apartment.details.bathrooms}</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm text-gray-700">
-                        <Wifi className="h-5 w-5 text-blue-600" />
+                        <Wifi className="h-5 w-5 text-brand-600" />
                         <span>Free WiFi</span>
                       </div>
                     </div>
 
                     {/* Features List */}
-                    <div className="p-6 bg-gradient-to-br from-blue-50 via-white to-blue-50 rounded-xl border-2 border-blue-100 shadow-md">
-                      <p className="text-base font-semibold text-blue-900 mb-3">Key Features:</p>
+                    <div className="p-6 bg-gradient-to-br from-brand-50 via-white to-brand-50 rounded-xl border-2 border-brand-100 shadow-md">
+                      <p className="text-base font-semibold text-brand-900 mb-3">Key Features:</p>
                       <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         {apartment.features.map((feature, idx) => (
                           <li key={idx} className="flex items-center gap-2 text-sm text-gray-700">
-                            <div className="w-2 h-2 rounded-full bg-blue-600"></div>
+                            <div className="w-2 h-2 rounded-full bg-brand-600"></div>
                             {feature}
                           </li>
                         ))}
@@ -306,7 +313,7 @@ export default function Apartments() {
                     {/* Action Button - Solid blue with white text */}
                     <div className="pt-4">
                       <Link to={`/apartments/${apartment.slug}`}>
-                        <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all">
+                        <Button className="bg-brand-600 hover:bg-brand-700 text-white px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all">
                           View Details & Book Now
                           <ArrowRight className="ml-2 h-5 w-5" />
                         </Button>
@@ -338,7 +345,7 @@ export default function Apartments() {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link to="/contact">
-                <Button size="lg" className="text-lg px-8 h-14 bg-orange-600 hover:bg-orange-700 text-white">
+                <Button size="lg" className="text-lg px-8 h-14 bg-gold-600 hover:bg-gold-700 text-white">
                   Contact Us
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
@@ -355,4 +362,3 @@ export default function Apartments() {
     </div>
   )
 }
-

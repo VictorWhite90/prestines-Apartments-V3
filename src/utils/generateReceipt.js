@@ -1,7 +1,7 @@
 import { jsPDF } from 'jspdf'
 
-const BRAND_ORANGE = [212, 107, 8]
-const BRAND_ORANGE_LIGHT = [255, 237, 213]
+const BRAND_BURGUNDY = [144, 0, 24]
+const BRAND_BURGUNDY_LIGHT = [255, 227, 227]
 const DARK = [31, 31, 31]
 const GRAY = [100, 100, 100]
 const LIGHT_GRAY = [240, 240, 240]
@@ -54,11 +54,11 @@ export const generateReceipt = async (booking) => {
   const valueX = margin + labelW
 
   // ── HEADER BAND ──────────────────────────────────────────────────────────
-  doc.setFillColor(...BRAND_ORANGE)
+  doc.setFillColor(...BRAND_BURGUNDY)
   doc.rect(0, 0, pageW, 36, 'F')
 
   // Logo (smaller)
-  const logoBase64 = await loadImageAsBase64('/images/loggoo.png')
+  const logoBase64 = await loadImageAsBase64('/new prestine images/logonew.png')
   if (logoBase64) {
     doc.addImage(logoBase64, 'PNG', margin, 5, 18, 18)
   }
@@ -83,7 +83,7 @@ export const generateReceipt = async (booking) => {
   doc.text('Official Booking Receipt', pageW - margin, 22, { align: 'right' })
 
   // ── RECEIPT META ─────────────────────────────────────────────────────────
-  doc.setFillColor(...BRAND_ORANGE_LIGHT)
+  doc.setFillColor(...BRAND_BURGUNDY_LIGHT)
   doc.rect(0, 36, pageW, 12, 'F')
 
   doc.setTextColor(...DARK)
@@ -98,7 +98,7 @@ export const generateReceipt = async (booking) => {
 
   // ── HELPERS ───────────────────────────────────────────────────────────────
   const drawSection = (title, startY) => {
-    doc.setFillColor(...BRAND_ORANGE)
+    doc.setFillColor(...BRAND_BURGUNDY)
     doc.rect(margin, startY, contentW, 7, 'F')
     doc.setTextColor(...WHITE)
     doc.setFontSize(8.5)
@@ -220,12 +220,12 @@ export const generateReceipt = async (booking) => {
   y += 10
 
   // ── DIVIDER ───────────────────────────────────────────────────────────────
-  doc.setDrawColor(...BRAND_ORANGE)
+  doc.setDrawColor(...BRAND_BURGUNDY)
   doc.setLineWidth(0.5)
   doc.line(margin, y, pageW - margin, y)
 
   // ── FOOTER ───────────────────────────────────────────────────────────────
-  doc.setFillColor(...BRAND_ORANGE)
+  doc.setFillColor(...BRAND_BURGUNDY)
   doc.rect(0, pageH - 20, pageW, 20, 'F')
   doc.setTextColor(...WHITE)
   doc.setFontSize(7.5)

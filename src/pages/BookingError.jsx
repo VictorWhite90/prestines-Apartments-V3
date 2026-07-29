@@ -19,7 +19,7 @@ export default function BookingError() {
             transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
             className="mb-6 flex justify-center"
           >
-            <XCircle className="h-20 w-20 text-orange-600" />
+            <XCircle className="h-20 w-20 text-gold-600" />
           </motion.div>
           <h1 className="text-3xl font-bold text-gray-900 mb-4 font-serif">
             Booking Not Successful
@@ -56,8 +56,6 @@ export default function BookingError() {
     </div>
   )
 }
-
-
 
 
 

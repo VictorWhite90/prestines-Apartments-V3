@@ -14,8 +14,8 @@ import { emailjsConfig } from '@/config/emailjs'
 import { generateReceipt } from '@/utils/generateReceipt'
 
 const statusBadgeStyle = {
-  pending_payment: 'bg-orange-100 text-orange-700',
-  temporary: 'bg-orange-100 text-orange-700', // Support old status for backward compatibility
+  pending_payment: 'bg-gold-100 text-gold-700',
+  temporary: 'bg-gold-100 text-gold-700', // Support old status for backward compatibility
   booking_successful: 'bg-green-100 text-green-700',
   cancelled: 'bg-red-100 text-red-700',
   reservation_failed: 'bg-gray-200 text-gray-700',
@@ -895,7 +895,7 @@ export default function Admin() {
           transition={{ duration: 0.6 }}
           className="mb-10"
         >
-          <p className="text-sm uppercase tracking-[4px] text-orange-600 font-semibold">Admin Dashboard</p>
+          <p className="text-sm uppercase tracking-[4px] text-gold-600 font-semibold">Admin Dashboard</p>
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mt-3">Prestine Apartments Control Center</h1>
           <p className="text-gray-600 mt-4 max-w-2xl">
             Monitor bookings, manage apartments, and keep track of guest activities seamlessly. This dashboard gives
@@ -912,7 +912,7 @@ export default function Admin() {
           >
             <Card className="border-0 shadow-lg">
               <CardHeader className="flex flex-row items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-full bg-gold-100 text-gold-600 flex items-center justify-center">
                   <Home className="h-6 w-6" />
                 </div>
                 <div>
@@ -934,7 +934,7 @@ export default function Admin() {
           >
             <Card className="border-0 shadow-lg">
               <CardHeader className="flex flex-row items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-full bg-gold-100 text-gold-600 flex items-center justify-center">
                   <ClipboardList className="h-6 w-6" />
                 </div>
                 <div>
@@ -943,7 +943,7 @@ export default function Admin() {
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-4xl font-bold text-orange-600">
+                <p className="text-4xl font-bold text-gold-600">
                   {bookings.filter(b => b.status === 'temporary' || b.status === 'pending_payment').length}
                 </p>
               </CardContent>
@@ -1004,7 +1004,7 @@ export default function Admin() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <Card className="border border-orange-200 shadow-lg">
+            <Card className="border border-gold-200 shadow-lg">
               <CardHeader className="flex items-center justify-between">
                 <div>
                   <CardTitle className="text-2xl font-serif text-gray-900">Recent Bookings</CardTitle>
@@ -1012,7 +1012,7 @@ export default function Admin() {
                 </div>
                 <Button 
                   variant="outline" 
-                  className="border-orange-200 text-orange-600 hover:bg-orange-50"
+                  className="border-gold-200 text-gold-600 hover:bg-gold-50"
                   onClick={fetchBookings}
                   disabled={loading}
                 >
@@ -1021,8 +1021,8 @@ export default function Admin() {
                 </Button>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="bg-orange-50 border border-orange-100 rounded-lg p-4">
-                  <div className="flex items-center gap-2 text-orange-700 font-semibold mb-4">
+                <div className="bg-gold-50 border border-gold-100 rounded-lg p-4">
+                  <div className="flex items-center gap-2 text-gold-700 font-semibold mb-4">
                     <Filter className="h-4 w-4" />
                     Smart Filters
                   </div>
@@ -1038,7 +1038,7 @@ export default function Admin() {
                           value={searchTerm}
                           onChange={(e) => setSearchTerm(e.target.value)}
                           placeholder="Type a guest name, email, phone or apartment"
-                          className="w-full pl-9 pr-3 py-2 border border-orange-200 rounded-md bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                          className="w-full pl-9 pr-3 py-2 border border-gold-200 rounded-md bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent"
                         />
                       </div>
                     </div>
@@ -1049,7 +1049,7 @@ export default function Admin() {
                       <select
                         value={statusFilter}
                         onChange={(e) => setStatusFilter(e.target.value)}
-                        className="w-full mt-1 border border-orange-200 rounded-md py-2 px-3 bg-white focus:outline-none focus:ring-2 focus:ring-orange-500"
+                        className="w-full mt-1 border border-gold-200 rounded-md py-2 px-3 bg-white focus:outline-none focus:ring-2 focus:ring-gold-500"
                       >
                         <option value="all">All statuses</option>
                         <option value="pending_payment">Pending Payment</option>
@@ -1065,7 +1065,7 @@ export default function Admin() {
                           type="date"
                           value={dateFilter.start}
                           onChange={(e) => setDateFilter((prev) => ({ ...prev, start: e.target.value }))}
-                          className="w-full mt-1 border border-orange-200 rounded-md py-2 px-3 bg-white focus:outline-none focus:ring-2 focus:ring-orange-500"
+                          className="w-full mt-1 border border-gold-200 rounded-md py-2 px-3 bg-white focus:outline-none focus:ring-2 focus:ring-gold-500"
                         />
                       </div>
                       <div>
@@ -1076,13 +1076,13 @@ export default function Admin() {
                           type="date"
                           value={dateFilter.end}
                           onChange={(e) => setDateFilter((prev) => ({ ...prev, end: e.target.value }))}
-                          className="w-full mt-1 border border-orange-200 rounded-md py-2 px-3 bg-white focus:outline-none focus:ring-2 focus:ring-orange-500"
+                          className="w-full mt-1 border border-gold-200 rounded-md py-2 px-3 bg-white focus:outline-none focus:ring-2 focus:ring-gold-500"
                         />
                       </div>
                     </div>
                   </div>
                   <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between mt-4">
-                    <p className="text-sm text-orange-700">
+                    <p className="text-sm text-gold-700">
                       Showing <span className="font-semibold">{filteredBookings.length}</span> booking
                       {filteredBookings.length === 1 ? '' : 's'} out of {bookings.length}
                     </p>
@@ -1090,7 +1090,7 @@ export default function Admin() {
                       <Button
                         type="button"
                         variant="ghost"
-                        className="text-orange-700 hover:bg-orange-100 w-full md:w-auto"
+                        className="text-gold-700 hover:bg-gold-100 w-full md:w-auto"
                         onClick={resetFilters}
                       >
                         <XCircle className="h-4 w-4 mr-2" />
@@ -1159,17 +1159,17 @@ export default function Admin() {
                           <Fragment key={booking.id}>
                           {/* Group header row — injected before the first unit of each group */}
                           {isFirstInGroup && (
-                            <tr key={`gh-${booking.group_booking_id}`} className="bg-orange-50 border-b border-orange-200">
+                            <tr key={`gh-${booking.group_booking_id}`} className="bg-gold-50 border-b border-gold-200">
                               <td colSpan={9} className="px-2 py-2">
                                 <div className="flex items-center justify-between flex-wrap gap-2">
                                   <div className="flex items-center gap-2">
-                                    <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-orange-200 text-orange-800 text-xs font-bold uppercase tracking-wide">
+                                    <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-gold-200 text-gold-800 text-xs font-bold uppercase tracking-wide">
                                       Group Booking
                                     </span>
-                                    <span className="text-sm font-semibold text-orange-900">
+                                    <span className="text-sm font-semibold text-gold-900">
                                       {groupUnitsInView.length} Apartments · {booking.first_name} {booking.last_name}
                                     </span>
-                                    <span className="text-xs text-orange-700">
+                                    <span className="text-xs text-gold-700">
                                       Ref: {booking.group_booking_id}
                                     </span>
                                   </div>
@@ -1186,7 +1186,7 @@ export default function Admin() {
                               </td>
                             </tr>
                           )}
-                          <tr key={booking.id} className={`border-b last:border-b-0 hover:bg-gray-50 ${isGroupUnit ? 'border-l-4 border-l-orange-300' : ''}`}>
+                          <tr key={booking.id} className={`border-b last:border-b-0 hover:bg-gray-50 ${isGroupUnit ? 'border-l-4 border-l-gold-300' : ''}`}>
                             <td className="py-4">
                               <div>
                                 <p className="font-semibold text-gray-900">
@@ -1194,13 +1194,13 @@ export default function Admin() {
                                 </p>
                                 <div className="flex items-center gap-2 mt-1">
                                   <Phone className="h-3 w-3 text-gray-400" />
-                                  <a href={`tel:${booking.user_phone}`} className="text-xs text-gray-500 hover:text-orange-600">
+                                  <a href={`tel:${booking.user_phone}`} className="text-xs text-gray-500 hover:text-gold-600">
                                     {booking.user_phone}
                                   </a>
                                 </div>
                                 <p className="text-xs text-gray-500">{booking.user_email}</p>
                                 {isGroupUnit && (
-                                  <span className="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full mt-1 inline-block">
+                                  <span className="text-xs bg-gold-100 text-gold-700 px-2 py-0.5 rounded-full mt-1 inline-block">
                                     Unit {booking.unit_index} of {booking.unit_count}
                                   </span>
                                 )}
@@ -1226,11 +1226,11 @@ export default function Admin() {
                             <td className="py-4 text-gray-700">
                               {booking.status === 'booking_successful' && (booking.balance !== undefined && booking.balance !== null) ? (
                                 <div>
-                                  <span className={`font-semibold ${booking.balance > 0 ? 'text-orange-600' : 'text-green-700'}`}>
+                                  <span className={`font-semibold ${booking.balance > 0 ? 'text-gold-600' : 'text-green-700'}`}>
                                     ₦{formatNumberWithCommas(booking.balance)}
                                   </span>
                                   {booking.negotiated_price && (
-                                    <p className="text-xs text-blue-600 mt-0.5" title={`Original: ₦${formatNumberWithCommas(booking.grand_total)} → Agreed: ₦${formatNumberWithCommas(booking.negotiated_price)}`}>
+                                    <p className="text-xs text-brand-600 mt-0.5" title={`Original: ₦${formatNumberWithCommas(booking.grand_total)} → Agreed: ₦${formatNumberWithCommas(booking.negotiated_price)}`}>
                                       Negotiated
                                     </p>
                                   )}
@@ -1260,7 +1260,7 @@ export default function Admin() {
                                   {booking.balance > 0 && (
                                     <Button
                                       size="sm"
-                                      className="bg-orange-500 hover:bg-orange-600 text-white w-full"
+                                      className="bg-gold-500 hover:bg-gold-600 text-white w-full"
                                       onClick={() => openAdditionalPaymentModal(booking)}
                                       disabled={updatingId === booking.id}
                                     >
@@ -1278,7 +1278,7 @@ export default function Admin() {
                                   <Button
                                     size="sm"
                                     variant="outline"
-                                    className="border-orange-300 text-orange-700 hover:bg-orange-50 w-full"
+                                    className="border-gold-300 text-gold-700 hover:bg-gold-50 w-full"
                                     onClick={() => generateReceipt(booking)}
                                   >
                                     <Download className="h-3 w-3 mr-1" />
@@ -1329,7 +1329,7 @@ export default function Admin() {
               </p>
             </div>
 
-            <div className="bg-orange-50 rounded-lg p-4 space-y-2">
+            <div className="bg-gold-50 rounded-lg p-4 space-y-2">
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">Apartment:</span>
                 <span className="font-semibold text-gray-900">{paymentBooking.apartment_name}</span>
@@ -1342,7 +1342,7 @@ export default function Admin() {
                 <span className="text-gray-600">Check-out:</span>
                 <span className="font-semibold text-gray-900">{formatDate(paymentBooking.checkout_date)}</span>
               </div>
-              <div className="flex justify-between text-sm pt-2 border-t border-orange-200">
+              <div className="flex justify-between text-sm pt-2 border-t border-gold-200">
                 <span className="text-gray-600">Grand Total:</span>
                 <span className={`font-bold text-lg ${isNegotiated && negotiatedPrice ? 'line-through text-gray-400' : 'text-gray-900'}`}>
                   ₦{formatNumberWithCommas(paymentBooking.grand_total || 0)}
@@ -1350,13 +1350,13 @@ export default function Admin() {
               </div>
               {isNegotiated && negotiatedPrice && !isNaN(parseFloat(negotiatedPrice)) && parseFloat(negotiatedPrice) > 0 && (
                 <div className="flex justify-between text-sm pt-1">
-                  <span className="text-blue-600 font-semibold">Agreed Price:</span>
-                  <span className="font-bold text-blue-700 text-lg">₦{formatNumberWithCommas(parseFloat(negotiatedPrice))}</span>
+                  <span className="text-brand-600 font-semibold">Agreed Price:</span>
+                  <span className="font-bold text-brand-700 text-lg">₦{formatNumberWithCommas(parseFloat(negotiatedPrice))}</span>
                 </div>
               )}
             </div>
 
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-3">
+            <div className="bg-brand-50 border border-brand-200 rounded-lg p-4 space-y-3">
               <label className="flex items-center gap-3 cursor-pointer">
                 <input
                   type="checkbox"
@@ -1365,15 +1365,15 @@ export default function Admin() {
                     setIsNegotiated(e.target.checked)
                     if (!e.target.checked) setNegotiatedPrice('')
                   }}
-                  className="w-4 h-4 accent-blue-600 rounded"
+                  className="w-4 h-4 accent-brand-600 rounded"
                 />
-                <span className="text-sm font-semibold text-blue-800">
+                <span className="text-sm font-semibold text-brand-800">
                   Price was negotiated / discounted
                 </span>
               </label>
               {isNegotiated && (
                 <div>
-                  <label className="text-xs text-blue-700 font-semibold block mb-1">
+                  <label className="text-xs text-brand-700 font-semibold block mb-1">
                     Agreed Negotiated Price
                   </label>
                   <div className="relative">
@@ -1386,10 +1386,10 @@ export default function Admin() {
                       value={negotiatedPrice}
                       onChange={(e) => setNegotiatedPrice(e.target.value)}
                       placeholder="Enter agreed price"
-                      className="w-full pl-8 pr-3 py-2 border-2 border-blue-200 rounded-lg bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent font-semibold"
+                      className="w-full pl-8 pr-3 py-2 border-2 border-brand-200 rounded-lg bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent font-semibold"
                     />
                   </div>
-                  <p className="text-xs text-blue-600 mt-1">
+                  <p className="text-xs text-brand-600 mt-1">
                     Balance will be calculated against this agreed price, not the original total.
                   </p>
                 </div>
@@ -1410,7 +1410,7 @@ export default function Admin() {
                   value={amountPaid}
                   onChange={(e) => setAmountPaid(e.target.value)}
                   placeholder="0.00"
-                  className="w-full pl-8 pr-3 py-3 border-2 border-orange-200 rounded-lg bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-lg font-semibold"
+                  className="w-full pl-8 pr-3 py-3 border-2 border-gold-200 rounded-lg bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent text-lg font-semibold"
                 />
               </div>
             </div>
@@ -1424,7 +1424,7 @@ export default function Admin() {
                 <div className="bg-green-50 rounded-lg p-4">
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Balance Remaining:</span>
-                    <span className={`font-bold text-xl ${modalBalance > 0 ? 'text-orange-600' : 'text-green-600'}`}>
+                    <span className={`font-bold text-xl ${modalBalance > 0 ? 'text-gold-600' : 'text-green-600'}`}>
                       ₦{formatNumberWithCommas(modalBalance)}
                     </span>
                   </div>
@@ -1479,7 +1479,7 @@ export default function Admin() {
               </p>
             </div>
 
-            <div className="bg-orange-50 rounded-lg p-4 space-y-2">
+            <div className="bg-gold-50 rounded-lg p-4 space-y-2">
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">Apartment:</span>
                 <span className="font-semibold text-gray-900">{additionalPaymentBooking.apartment_name}</span>
@@ -1489,7 +1489,7 @@ export default function Admin() {
                 <span className="font-semibold text-gray-900">
                   ₦{formatNumberWithCommas(additionalPaymentBooking.negotiated_price || additionalPaymentBooking.grand_total || 0)}
                   {additionalPaymentBooking.negotiated_price && (
-                    <span className="text-xs text-blue-600 ml-1">(Negotiated)</span>
+                    <span className="text-xs text-brand-600 ml-1">(Negotiated)</span>
                   )}
                 </span>
               </div>
@@ -1497,9 +1497,9 @@ export default function Admin() {
                 <span className="text-gray-600">Previously Paid:</span>
                 <span className="font-semibold text-green-700">₦{formatNumberWithCommas(additionalPaymentBooking.amount_paid || 0)}</span>
               </div>
-              <div className="flex justify-between text-sm pt-2 border-t border-orange-200">
+              <div className="flex justify-between text-sm pt-2 border-t border-gold-200">
                 <span className="text-gray-600">Outstanding Balance:</span>
-                <span className="font-bold text-orange-600 text-lg">₦{formatNumberWithCommas(additionalPaymentBooking.balance || 0)}</span>
+                <span className="font-bold text-gold-600 text-lg">₦{formatNumberWithCommas(additionalPaymentBooking.balance || 0)}</span>
               </div>
             </div>
 
@@ -1517,7 +1517,7 @@ export default function Admin() {
                   value={additionalAmountPaid}
                   onChange={(e) => setAdditionalAmountPaid(e.target.value)}
                   placeholder="0.00"
-                  className="w-full pl-8 pr-3 py-3 border-2 border-orange-200 rounded-lg bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-lg font-semibold"
+                  className="w-full pl-8 pr-3 py-3 border-2 border-gold-200 rounded-lg bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent text-lg font-semibold"
                 />
               </div>
             </div>
@@ -1533,7 +1533,7 @@ export default function Admin() {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Remaining Balance:</span>
-                    <span className={`font-bold text-xl ${addBalance > 0 ? 'text-orange-600' : 'text-green-600'}`}>
+                    <span className={`font-bold text-xl ${addBalance > 0 ? 'text-gold-600' : 'text-green-600'}`}>
                       ₦{formatNumberWithCommas(addBalance)}
                     </span>
                   </div>
@@ -1560,7 +1560,7 @@ export default function Admin() {
                 Cancel
               </Button>
               <Button
-                className="bg-orange-500 hover:bg-orange-600 text-white"
+                className="bg-gold-500 hover:bg-gold-600 text-white"
                 onClick={handleAdditionalPayment}
                 disabled={confirmingAdditionalPayment || !additionalAmountPaid}
               >
@@ -1594,7 +1594,7 @@ export default function Admin() {
                   startDate={extendDates.checkin}
                   endDate={extendDates.checkout}
                   maxDate={extendDates.checkout || null}
-                  className="w-full mt-1 border border-orange-200 rounded-md py-2 px-3 bg-white focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full mt-1 border border-gold-200 rounded-md py-2 px-3 bg-white focus:outline-none focus:ring-2 focus:ring-gold-500"
                 />
               </div>
               <div>
@@ -1612,7 +1612,7 @@ export default function Admin() {
                       ? new Date(extendDates.checkin.getTime() + 24 * 60 * 60 * 1000)
                       : new Date()
                   }
-                  className="w-full mt-1 border border-orange-200 rounded-md py-2 px-3 bg-white focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full mt-1 border border-gold-200 rounded-md py-2 px-3 bg-white focus:outline-none focus:ring-2 focus:ring-gold-500"
                 />
               </div>
             </div>
@@ -1651,7 +1651,7 @@ export default function Admin() {
                 Close
               </Button>
               <Button
-                className="bg-orange-600 hover:bg-orange-700 text-white"
+                className="bg-gold-600 hover:bg-gold-700 text-white"
                 onClick={handleExtendStaySubmit}
                 disabled={extending}
               >
@@ -1683,7 +1683,7 @@ export default function Admin() {
                 </p>
               </div>
 
-              <div className="bg-orange-50 rounded-lg p-4 space-y-2">
+              <div className="bg-gold-50 rounded-lg p-4 space-y-2">
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Apartment:</span>
                   <span className="font-semibold text-gray-900">{representative.apartment_name}</span>
@@ -1698,9 +1698,9 @@ export default function Admin() {
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Units to confirm:</span>
-                  <span className="font-semibold text-orange-800">{unitCount} Apartments</span>
+                  <span className="font-semibold text-gold-800">{unitCount} Apartments</span>
                 </div>
-                <div className="flex justify-between text-sm pt-2 border-t border-orange-200">
+                <div className="flex justify-between text-sm pt-2 border-t border-gold-200">
                   <span className="text-gray-600">Total (all units):</span>
                   <span className={`font-bold text-lg ${parsedNeg ? 'line-through text-gray-400' : 'text-gray-900'}`}>
                     ₦{formatNumberWithCommas(groupGrandTotal)}
@@ -1708,13 +1708,13 @@ export default function Admin() {
                 </div>
                 {parsedNeg && (
                   <div className="flex justify-between text-sm pt-1">
-                    <span className="text-blue-600 font-semibold">Agreed Price (all units):</span>
-                    <span className="font-bold text-blue-700 text-lg">₦{formatNumberWithCommas(parsedNeg)}</span>
+                    <span className="text-brand-600 font-semibold">Agreed Price (all units):</span>
+                    <span className="font-bold text-brand-700 text-lg">₦{formatNumberWithCommas(parsedNeg)}</span>
                   </div>
                 )}
               </div>
 
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-3">
+              <div className="bg-brand-50 border border-brand-200 rounded-lg p-4 space-y-3">
                 <label className="flex items-center gap-3 cursor-pointer">
                   <input
                     type="checkbox"
@@ -1723,15 +1723,15 @@ export default function Admin() {
                       setIsGroupNegotiated(e.target.checked)
                       if (!e.target.checked) setGroupNegotiatedPrice('')
                     }}
-                    className="w-4 h-4 accent-blue-600 rounded"
+                    className="w-4 h-4 accent-brand-600 rounded"
                   />
-                  <span className="text-sm font-semibold text-blue-800">
+                  <span className="text-sm font-semibold text-brand-800">
                     Price was negotiated / discounted
                   </span>
                 </label>
                 {isGroupNegotiated && (
                   <div>
-                    <label className="text-xs text-blue-700 font-semibold block mb-1">
+                    <label className="text-xs text-brand-700 font-semibold block mb-1">
                       Agreed Total Price (all {unitCount} apartments)
                     </label>
                     <div className="relative">
@@ -1744,10 +1744,10 @@ export default function Admin() {
                         value={groupNegotiatedPrice}
                         onChange={(e) => setGroupNegotiatedPrice(e.target.value)}
                         placeholder="Enter agreed total price"
-                        className="w-full pl-8 pr-3 py-2 border-2 border-blue-200 rounded-lg bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent font-semibold"
+                        className="w-full pl-8 pr-3 py-2 border-2 border-brand-200 rounded-lg bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent font-semibold"
                       />
                     </div>
-                    <p className="text-xs text-blue-600 mt-1">
+                    <p className="text-xs text-brand-600 mt-1">
                       This will be split equally across all {unitCount} apartments.
                     </p>
                   </div>
@@ -1768,7 +1768,7 @@ export default function Admin() {
                     value={groupAmountPaid}
                     onChange={(e) => setGroupAmountPaid(e.target.value)}
                     placeholder="0.00"
-                    className="w-full pl-8 pr-3 py-3 border-2 border-orange-200 rounded-lg bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-lg font-semibold"
+                    className="w-full pl-8 pr-3 py-3 border-2 border-gold-200 rounded-lg bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent text-lg font-semibold"
                   />
                 </div>
               </div>
@@ -1777,7 +1777,7 @@ export default function Admin() {
                 <div className="bg-green-50 rounded-lg p-4">
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Group Balance Remaining:</span>
-                    <span className={`font-bold text-xl ${groupBalance > 0 ? 'text-orange-600' : 'text-green-600'}`}>
+                    <span className={`font-bold text-xl ${groupBalance > 0 ? 'text-gold-600' : 'text-green-600'}`}>
                       ₦{formatNumberWithCommas(groupBalance)}
                     </span>
                   </div>

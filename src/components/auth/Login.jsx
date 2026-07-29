@@ -90,7 +90,7 @@ export default function Login() {
 
               <Button 
                 type="submit" 
-                className="w-full bg-orange-600 hover:bg-orange-700 text-white"
+                className="w-full bg-gold-600 hover:bg-gold-700 text-white"
                 disabled={loading}
               >
                 {loading ? 'Signing in...' : 'Sign In'}
@@ -98,7 +98,7 @@ export default function Login() {
             </form>
 
             <div className="mt-6 text-center text-sm text-gray-600">
-              <p>Not an admin? <Link to="/" className="text-orange-600 hover:underline">Go to Home</Link></p>
+              <p>Not an admin? <Link to="/" className="text-gold-600 hover:underline">Go to Home</Link></p>
             </div>
           </CardContent>
         </Card>

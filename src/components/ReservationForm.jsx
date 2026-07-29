@@ -344,7 +344,7 @@ export default function ReservationForm({ apartment, price: priceProp }) {
                       excludeDates={blockedDates}
                       placeholderText="Select check-in date"
                       dateFormat="MM/dd/yyyy"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gold-600 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
                       disabled={loadingDates}
                       wrapperClassName="w-full"
                       calendarClassName="shadow-xl"
@@ -390,7 +390,7 @@ export default function ReservationForm({ apartment, price: priceProp }) {
                       excludeDates={blockedDates}
                       placeholderText="Select check-out date"
                       dateFormat="MM/dd/yyyy"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gold-600 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
                       disabled={loadingDates || !checkinDate}
                       wrapperClassName="w-full"
                       calendarClassName="shadow-xl"
@@ -421,7 +421,7 @@ export default function ReservationForm({ apartment, price: priceProp }) {
             )}
             
             {!apartment?.disableDateBlocking && blockedDates.length > 0 && (
-              <div className="bg-blue-50 border border-blue-200 text-blue-700 px-4 py-3 rounded-lg text-sm">
+              <div className="bg-brand-50 border border-brand-200 text-brand-700 px-4 py-3 rounded-lg text-sm">
                 <p>ℹ️ Unavailable dates are automatically grayed out in the calendar</p>
               </div>
             )}
@@ -433,7 +433,7 @@ export default function ReservationForm({ apartment, price: priceProp }) {
                   <button
                     type="button"
                     onClick={() => setUnitCount(c => Math.max(1, c - 1))}
-                    className="w-6 h-6 rounded-full border border-orange-300 text-orange-700 font-bold text-sm hover:bg-orange-50 flex items-center justify-center"
+                    className="w-6 h-6 rounded-full border border-gold-300 text-gold-700 font-bold text-sm hover:bg-gold-50 flex items-center justify-center"
                   >
                     −
                   </button>
@@ -443,7 +443,7 @@ export default function ReservationForm({ apartment, price: priceProp }) {
                   <button
                     type="button"
                     onClick={() => setUnitCount(c => Math.min(apartment.maxUnits, c + 1))}
-                    className="w-6 h-6 rounded-full border border-orange-300 text-orange-700 font-bold text-sm hover:bg-orange-50 flex items-center justify-center"
+                    className="w-6 h-6 rounded-full border border-gold-300 text-gold-700 font-bold text-sm hover:bg-gold-50 flex items-center justify-center"
                   >
                     +
                   </button>
@@ -525,7 +525,7 @@ export default function ReservationForm({ apartment, price: priceProp }) {
               <p className="text-red-500 text-sm">{errors.policyCheck.message}</p>
             )}
 
-            <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white" disabled={isSubmitting}>
+            <Button type="submit" className="w-full bg-brand-600 hover:bg-brand-700 text-white" disabled={isSubmitting}>
               {isSubmitting ? 'Submitting...' : 'Submit Reservation'}
             </Button>
           </form>

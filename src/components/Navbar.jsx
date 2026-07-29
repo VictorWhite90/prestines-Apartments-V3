@@ -25,43 +25,20 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Top Bar */}
-      <div className="bg-black text-white py-2 hidden lg:block">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between text-sm">
-            <div className="flex items-center gap-6">
-              <a href="tel:09112300062" className="flex items-center gap-2 hover:text-orange-300 transition-colors">
-                <Phone className="h-4 w-4" />
-                <span>09112300062</span>
-              </a>
-              <a href="mailto:Support@prestineapartment.com" className="flex items-center gap-2 hover:text-orange-300 transition-colors">
-                <Mail className="h-4 w-4" />
-                <span>Support@prestineapartment.com</span>
-              </a>
-            </div>
-            <div className="flex items-center gap-4 text-xs">
-              <span>English</span>
-              <span className="text-white/50">|</span>
-              <span className="text-white/50">24/7 Support</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Main Navigation */}
       <nav className={`sticky top-0 z-50 transition-all duration-300 overflow-x-hidden max-w-full w-full ${
         scrolled 
-          ? 'bg-white/95 backdrop-blur-md shadow-lg' 
-          : 'bg-white'
+          ? 'bg-[#4A000C]/95 backdrop-blur-md shadow-lg'
+          : 'bg-[#4A000C]'
       }`}>
         <div className="container mx-auto px-4 max-w-full">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-24">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 group">
               <img 
-                src="/images/prestine ;ogo.png" 
+                src="/new prestine images/logonew.png"
                 alt="Prestine Apartments" 
-                className="h-10 md:h-12 w-auto max-w-[120px] md:max-w-[150px] object-contain"
+                className="h-16 md:h-20 w-auto max-w-[160px] md:max-w-[200px] object-contain"
               />
             </Link>
 
@@ -73,15 +50,15 @@ export default function Navbar() {
                     to={link.path}
                     className={`relative text-sm font-medium transition-colors ${
                       location.pathname === link.path
-                        ? 'text-orange-600'
-                        : 'text-gray-700 hover:text-orange-600'
+                        ? 'text-gold-300'
+                        : 'text-white hover:text-gold-300'
                     }`}
                   >
                     {link.label}
                     {location.pathname === link.path && (
                       <motion.div
                         layoutId="activeTab"
-                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-orange-600"
+                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gold-300"
                       />
                     )}
                   </Link>
@@ -92,7 +69,7 @@ export default function Navbar() {
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden relative p-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-all duration-300 hover:scale-110 hover:shadow-lg"
+              className="lg:hidden relative p-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white transition-all duration-300 hover:scale-110 hover:shadow-lg"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
             >
@@ -127,11 +104,11 @@ export default function Navbar() {
               style={{ overscrollBehavior: 'contain' }}
             >
               <div className="flex flex-col h-full overflow-hidden">
-                <div className="flex items-center justify-between p-6 border-b-2 border-blue-600 bg-blue-600 flex-shrink-0">
+                <div className="flex items-center justify-between p-6 border-b-2 border-brand-600 bg-brand-600 flex-shrink-0">
                   <img
-                    src="/images/prestine ;ogo.png"
+                    src="/new prestine images/logonew.png"
                     alt="Prestine Apartments"
-                    className="h-10 w-auto object-contain"
+                    className="h-14 w-auto max-w-[170px] object-contain"
                   />
                   <button
                     onClick={() => setIsOpen(false)}
@@ -154,8 +131,8 @@ export default function Navbar() {
                           to={link.path}
                           className={`block px-4 py-3 rounded-lg transition-all duration-300 ${
                             location.pathname === link.path
-                              ? 'bg-blue-600 text-white font-semibold shadow-lg'
-                              : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'
+                              ? 'bg-brand-600 text-white font-semibold shadow-lg'
+                              : 'text-gray-700 hover:bg-brand-50 hover:text-brand-600'
                           }`}
                           onClick={() => setIsOpen(false)}
                         >
@@ -168,11 +145,11 @@ export default function Navbar() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6 }}
-                    className="mt-8 pt-8 border-t-2 border-blue-200"
+                    className="mt-8 pt-8 border-t-2 border-brand-200"
                   >
                     <Link
                       to="/apartments"
-                      className="block w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white text-center rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105"
+                      className="block w-full px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white text-center rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105"
                       onClick={() => setIsOpen(false)}
                     >
                       Book Now
@@ -186,18 +163,18 @@ export default function Navbar() {
                   >
                     <a
                       href="tel:09112300062"
-                      className="flex items-center gap-3 px-4 py-3 bg-blue-50 hover:bg-blue-100 rounded-lg text-gray-700 transition-colors border border-blue-200"
+                      className="flex items-center gap-3 px-4 py-3 bg-brand-50 hover:bg-brand-100 rounded-lg text-gray-700 transition-colors border border-brand-200"
                       onClick={() => setIsOpen(false)}
                     >
-                      <Phone className="h-5 w-5 text-blue-600" />
+                      <Phone className="h-5 w-5 text-brand-600" />
                       <span className="font-medium">09112300062</span>
                     </a>
                     <a
                       href="mailto:Support@prestineapartment.com"
-                      className="flex items-center gap-3 px-4 py-3 bg-blue-50 hover:bg-blue-100 rounded-lg text-gray-700 transition-colors border border-blue-200"
+                      className="flex items-center gap-3 px-4 py-3 bg-brand-50 hover:bg-brand-100 rounded-lg text-gray-700 transition-colors border border-brand-200"
                       onClick={() => setIsOpen(false)}
                     >
-                      <Mail className="h-5 w-5 text-blue-600" />
+                      <Mail className="h-5 w-5 text-brand-600" />
                       <span className="text-sm font-medium">Support@prestineapartment.com</span>
                     </a>
                   </motion.div>
