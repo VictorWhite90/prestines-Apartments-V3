@@ -3,7 +3,6 @@ import { motion } from 'framer-motion'
 import { apartments } from '@/data/apartments'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import ReservationForm from '@/components/ReservationForm'
 import { useState, useEffect } from 'react'
 import {
   AirVent,
@@ -286,28 +285,25 @@ export default function ApartmentDetail() {
                 </div>
               </div>
             </div>
-            <Button
-              onClick={() => {
-                document.getElementById('reservation-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-              }}
-              className="relative overflow-hidden bg-brand-600 hover:bg-brand-700 text-white px-4 py-3 text-base sm:px-8 sm:py-6 sm:text-lg"
-            >
-              Book Now
-              {/* Sparkling Star */}
-              {showStar && (
-                <span
-                  className="absolute text-white text-lg pointer-events-none animate-pulse"
-                  style={{
-                    top: starPosition.top,
-                    left: starPosition.left,
-                    filter: 'drop-shadow(0 0 4px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 8px rgba(255, 255, 255, 0.6))',
-                    textShadow: '0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.8)'
-                  }}
-                >
-                  ✦
-                </span>
-              )}
-            </Button>
+            <a href={apartment.bookingUrl} target="_blank" rel="noopener noreferrer">
+              <Button className="relative overflow-hidden bg-brand-600 hover:bg-brand-700 text-white px-4 py-3 text-base sm:px-8 sm:py-6 sm:text-lg">
+                Book Now
+                {/* Sparkling Star */}
+                {showStar && (
+                  <span
+                    className="absolute text-white text-lg pointer-events-none animate-pulse"
+                    style={{
+                      top: starPosition.top,
+                      left: starPosition.left,
+                      filter: 'drop-shadow(0 0 4px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 8px rgba(255, 255, 255, 0.6))',
+                      textShadow: '0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.8)'
+                    }}
+                  >
+                    ✦
+                  </span>
+                )}
+              </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -390,10 +386,22 @@ export default function ApartmentDetail() {
             </Card>
           </div>
 
-          {/* Right Column - Reservation Form */}
-          <div className="lg:col-span-1" id="reservation-form">
+          {/* Right Column - PMS Booking */}
+          <div className="lg:col-span-1">
             <div className="sticky top-24">
-              <ReservationForm apartment={apartment} price={apartment.price} />
+              <Card>
+                <CardHeader>
+                  <CardTitle>Book Your Stay</CardTitle>
+                  <CardDescription>Continue to our secure PMS booking page for availability and reservation details.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <a href={apartment.bookingUrl} target="_blank" rel="noopener noreferrer" className="block">
+                    <Button className="w-full bg-brand-600 hover:bg-brand-700 text-white">
+                      Book Now
+                    </Button>
+                  </a>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>

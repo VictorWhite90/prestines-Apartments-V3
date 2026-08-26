@@ -95,12 +95,12 @@ export default function Apartments() {
               <span className="text-sm">{heroApartments[currentHeroSlide]?.location}</span>
             </div>
 
-            <Link to={`/apartments/${heroApartments[currentHeroSlide]?.slug}`}>
+            <a href={heroApartments[currentHeroSlide]?.bookingUrl} target="_blank" rel="noopener noreferrer">
               <Button className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 text-sm font-semibold shadow-lg hover:shadow-brand-500/50 transition-all duration-300 hover:scale-105">
-                View Details & Book Now
+                Book Now
                 <ArrowRight className="ml-1 h-4 w-4" />
               </Button>
-            </Link>
+            </a>
           </motion.div>
         </div>
 
@@ -312,12 +312,12 @@ export default function Apartments() {
 
                     {/* Action Button - Solid blue with white text */}
                     <div className="pt-4">
-                      <Link to={`/apartments/${apartment.slug}`}>
+                      <a href={apartment.bookingUrl} target="_blank" rel="noopener noreferrer">
                         <Button className="bg-brand-600 hover:bg-brand-700 text-white px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all">
-                          View Details & Book Now
+                          Book Now
                           <ArrowRight className="ml-2 h-5 w-5" />
                         </Button>
-                      </Link>
+                      </a>
                     </div>
                   </motion.div>
                 </div>
