@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { apartments } from '@/data/apartments'
 import { ArrowRight, Star, MapPin, Wifi, Car, Shield, Users, HomeIcon, UtensilsCrossed, Sparkles, Award, Clock, Phone, Mail, ChevronLeft, ChevronRight, Waves, Building2, Scissors, ChefHat, Trophy } from 'lucide-react'
 import { motion, useInView } from 'framer-motion'
-import { initAllTracking, trackFacebookPageView, trackGooglePageView } from '@/utils/tracking'
+import { initAllTracking, trackFacebookPageView } from '@/utils/tracking'
 import LocateButton from '@/components/LocateButton'
 
 export default function Home() {
@@ -73,7 +73,6 @@ export default function Home() {
   useEffect(() => {
     initAllTracking()
     trackFacebookPageView()
-    trackGooglePageView('/')
   }, [])
 
   const nextSlide = () => {

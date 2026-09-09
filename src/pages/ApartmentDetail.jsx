@@ -1,7 +1,7 @@
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { apartments } from '@/data/apartments'
-import { Button } from '@/components/ui/button'
+import { Button, buttonVariants } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { useState, useEffect } from 'react'
 import {
@@ -22,7 +22,7 @@ import {
   Wifi,
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { initAllTracking, trackFacebookPageView, trackGooglePageView } from '@/utils/tracking'
+import { initAllTracking, trackFacebookPageView } from '@/utils/tracking'
 
 const getFeatureIcon = (feature) => {
   const label = feature.toLowerCase()
@@ -55,7 +55,6 @@ const includedServices = [
 
 export default function ApartmentDetail() {
   const { slug } = useParams()
-  const navigate = useNavigate()
   const apartment = apartments.find((apt) => apt.slug === slug)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [pendingImageIndex, setPendingImageIndex] = useState(null)
@@ -102,7 +101,6 @@ export default function ApartmentDetail() {
   useEffect(() => {
     initAllTracking()
     trackFacebookPageView()
-    trackGooglePageView(`/apartments/${slug}`)
   }, [slug])
 
   useEffect(() => {
@@ -462,10 +460,14 @@ export default function ApartmentDetail() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="relative"
               >
-                <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer group rounded-tl-[80px]"
-                  onClick={() => navigate(`/apartments/${apt.slug}`)}
-                >
+                <Link
+                  to={`/apartments/${apt.slug}`}
+                  aria-label={apt.name}
+                  className="absolute inset-0 z-10"
+                />
+                <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer group rounded-tl-[80px]">
                   <div className="relative h-80 md:h-96 overflow-hidden rounded-tl-[80px]">
                     <img
                       src={apt.image}
@@ -495,15 +497,12 @@ export default function ApartmentDetail() {
                         <span className="font-semibold">{apt.rating}</span>
                         <span className="text-sm text-gray-500">({apt.reviewCount} reviews)</span>
                       </div>
-                      <Button
-                        onClick={(e) => {
-                          e.stopPropagation()
-                          navigate(`/apartments/${apt.slug}`)
-                        }}
-                        className="bg-brand-600 hover:bg-brand-700 text-white"
+                      <Link
+                        to={`/apartments/${apt.slug}`}
+                        className={buttonVariants({ className: 'relative z-20 bg-brand-600 hover:bg-brand-700 text-white' })}
                       >
                         View Details
-                      </Button>
+                      </Link>
                     </div>
                   </CardContent>
                 </Card>

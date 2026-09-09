@@ -1,9 +1,10 @@
-import { HashRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
 import LocateButton from './components/LocateButton'
 import ScrollToTop from './components/ScrollToTop'
+import PageMeta from './components/PageMeta'
 import Home from './pages/Home'
 import Apartments from './pages/Apartments'
 import ApartmentDetail from './pages/ApartmentDetail'
@@ -25,6 +26,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
+      <PageMeta />
       <div className="flex flex-col min-h-screen overflow-x-hidden max-w-full">
         <Navbar />
         <main className="flex-grow overflow-x-hidden max-w-full">
@@ -48,8 +50,9 @@ function App() {
                 <ProtectedAdminRoute>
                   <Admin />
                 </ProtectedAdminRoute>
-              } 
+              }
             />
+            <Route path="*" element={<div className="min-h-screen flex items-center justify-center"><h1 className="text-4xl">Page not found</h1></div>} />
           </Routes>
         </main>
         <Footer />

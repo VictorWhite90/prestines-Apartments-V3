@@ -59,48 +59,21 @@ export const trackFacebookLead = () => {
   }
 }
 
-// Initialize Microsoft Clarity
-export const initClarity = () => {
+// Initialize Google Ads (Clarity and GA4 pageviews now run through Google Tag Manager, GTM-58RRD5NZ)
+export const initGoogleAds = () => {
   if (typeof window === 'undefined') return
 
   // Check if already initialized
-  if (window.clarity) {
-    if (DEBUG_TRACKING) console.log('✅ Microsoft Clarity already initialized')
+  if (window.__adsTagLoaded) {
+    if (DEBUG_TRACKING) console.log('✅ Google Ads already initialized')
     return
   }
+  window.__adsTagLoaded = true
 
-  // Microsoft Clarity tracking code
-  ;(function(c, l, a, r, i, t, y) {
-    c[a] = c[a] || function() {
-      (c[a].q = c[a].q || []).push(arguments)
-    }
-    t = l.createElement(r)
-    t.async = 1
-    t.src = 'https://www.clarity.ms/tag/' + i
-    y = l.getElementsByTagName(r)[0]
-    y.parentNode.insertBefore(t, y)
-  })(window, document, 'clarity', 'script', 'q4i8nxllpb')
-  
-  if (DEBUG_TRACKING) {
-    console.log('✅ Microsoft Clarity initialized')
-    console.log('📊 Clarity Project ID: q4i8nxllpb')
-  }
-}
-
-// Initialize Google Analytics
-export const initGoogleAnalytics = () => {
-  if (typeof window === 'undefined') return
-
-  // Check if already initialized
-  if (window.dataLayer && window.gtag) {
-    if (DEBUG_TRACKING) console.log('✅ Google Analytics already initialized')
-    return
-  }
-
-  // Load Google tag (gtag.js)
+  // Load Google tag (gtag.js) for Ads
   const script = document.createElement('script')
   script.async = true
-  script.src = 'https://www.googletagmanager.com/gtag/js?id=G-YTY8FXJJJ0'
+  script.src = 'https://www.googletagmanager.com/gtag/js?id=AW-16944698468'
   document.head.appendChild(script)
 
   // Initialize dataLayer and gtag function
@@ -108,27 +81,12 @@ export const initGoogleAnalytics = () => {
   function gtag() {
     window.dataLayer.push(arguments)
   }
-  window.gtag = gtag
   gtag('js', new Date())
-  gtag('config', 'G-YTY8FXJJJ0')
-  gtag('config', 'AW-16944698468') // Google Ads conversion tracking
-  
-  if (DEBUG_TRACKING) {
-    console.log('✅ Google Analytics initialized')
-    console.log('📊 Google Analytics ID: G-YTY8FXJJJ0')
-    console.log('📊 Google Ads ID: AW-16944698468')
-  }
-}
+  gtag('config', 'AW-16944698468')
 
-// Track Google Analytics PageView
-export const trackGooglePageView = (path) => {
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('config', 'G-YTY8FXJJJ0', {
-      page_path: path
-    })
-    if (DEBUG_TRACKING) console.log(`📊 Google Analytics: PageView tracked for ${path}`)
-  } else if (DEBUG_TRACKING) {
-    console.warn('⚠️ Google Analytics not initialized yet')
+  if (DEBUG_TRACKING) {
+    console.log('✅ Google Ads initialized')
+    console.log('📊 Google Ads ID: AW-16944698468')
   }
 }
 
@@ -152,9 +110,8 @@ export const initAllTracking = () => {
   }
   
   initFacebookPixel()
-  initClarity()
-  initGoogleAnalytics()
-  
+  initGoogleAds()
+
   if (DEBUG_TRACKING) {
     console.log('✅ All tracking scripts initialized')
     console.log('💡 Tip: Check Network tab in DevTools to verify tracking requests')
@@ -170,15 +127,15 @@ export const verifyTracking = () => {
 
   const status = {
     facebookPixel: !!window.fbq,
-    clarity: !!window.clarity,
-    googleAnalytics: !!(window.gtag && window.dataLayer)
+    tagManager: !!window.google_tag_manager,
+    googleAds: !!(window.gtag && window.dataLayer)
   }
 
   console.log('📊 Tracking Status:', status)
-  
-  if (status.facebookPixel && status.clarity && status.googleAnalytics) {
+
+  if (status.facebookPixel && status.tagManager && status.googleAds) {
     console.log('✅ All tracking scripts are loaded and ready!')
-    console.log('📊 Includes: Facebook Pixel, Microsoft Clarity, Google Analytics & Google Ads')
+    console.log('📊 Includes: Facebook Pixel, Google Tag Manager (Clarity + GA4) & Google Ads')
   } else {
     console.warn('⚠️ Some tracking scripts may not be loaded:', status)
   }

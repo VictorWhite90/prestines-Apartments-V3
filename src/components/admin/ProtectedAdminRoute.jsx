@@ -72,7 +72,7 @@ export default function ProtectedAdminRoute({ children }) {
               onClick={async () => {
                 if (user) {
                   await auth.signOut()
-                  window.location.href = '/#/admin/login'
+                  window.location.href = '/admin/login'
                 }
               }}
               className="px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg font-medium transition-colors"
