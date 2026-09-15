@@ -1,6 +1,10 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
+RewriteCond %{HTTP_HOST} ^www\.prestineapartment\.com$ [NC]
+RewriteRule ^(.*)$ https://prestineapartment.com/$1 [R=301,L]
+RewriteCond %{THE_REQUEST} \s/index\.html[\s?]
+RewriteRule ^index\.html$ https://prestineapartment.com/ [R=301,L]
 RewriteRule ^index\.html$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

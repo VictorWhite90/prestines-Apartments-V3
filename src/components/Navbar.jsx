@@ -20,7 +20,6 @@ export default function Navbar() {
     { path: '/', label: 'Home' },
     { path: '/apartments', label: 'Apartments' },
     { path: '/contact', label: 'Contact' },
-    { path: '/admin/login', label: 'Admin' },
   ]
 
   return (
