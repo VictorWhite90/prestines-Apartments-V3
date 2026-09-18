@@ -419,11 +419,11 @@ export default function ApartmentDetail() {
               <MapPin className="text-gold-600" size={32} />
               Locate Us on Map
             </h2>
-            <p className="text-gray-600">Plot 219 Martin Ejembi Crescent, Apo-Dutse, Abuja.</p>
+            <p className="text-gray-600">Plot 219, Martin Ejembi Crescent, Opposite Queens specialist hospital, Apo-Dutse, Abuja Municipal, Abuja 900110, Federal Capital Territory</p>
           </motion.div>
           <div className="rounded-lg overflow-hidden shadow-lg">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.8384986523947!2d7.4910934000000005!3d8.987004599999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0d2a678a79e3%3A0x1124c0d588f26144!2sPleasant%20Places%2CApo!5e0!3m2!1sen!2sng!4v1735572037165!5m2!1sen!2sng"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.8384986523947!2d7.4921973!3d8.9867703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e734ad0fde213%3A0xfc4ab851f422c3f9!2sPRESTINE%20APARTMENTS!5e0!3m2!1sen!2sng!4v1735572037165!5m2!1sen!2sng"
               width="100%"
               height="450"
               style={{ border: 0 }}

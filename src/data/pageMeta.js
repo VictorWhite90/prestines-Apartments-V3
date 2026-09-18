@@ -31,7 +31,7 @@ export const pageMeta = {
   ],
   '/contact': [
     'Contact Prestine Apartments, Apo-Dutse Abuja',
-    'Call 0911 230 0062 or message us on WhatsApp for rates and availability at Prestine Apartments, Plot 219 Martin Ejembi Crescent, Apo-Dutse, Abuja.',
+    'Call 0911 230 0062 or message us on WhatsApp for rates and availability at Prestine Apartments, Plot 219, Martin Ejembi Crescent, Opposite Queens specialist hospital, Apo-Dutse, Abuja Municipal, Abuja 900110, Federal Capital Territory.',
   ],
   '/gallery': [
     'Photos of Our Apartments in Apo-Dutse, Abuja',
