@@ -89,17 +89,10 @@ export default function Apartments() {
               {heroApartments[currentHeroSlide]?.name}
             </h1>
 
-            <div className="flex items-center gap-2 mb-4 text-white/90">
+            <div className="flex items-center gap-2 text-white/90">
               <MapPin className="h-4 w-4" />
               <span className="text-sm">{heroApartments[currentHeroSlide]?.location}</span>
             </div>
-
-            <a href={heroApartments[currentHeroSlide]?.bookingUrl} target="_blank" rel="noopener noreferrer">
-              <Button className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 text-sm font-semibold shadow-lg hover:shadow-brand-500/50 transition-all duration-300 hover:scale-105">
-                Book Now
-                <ArrowRight className="ml-1 h-4 w-4" />
-              </Button>
-            </a>
           </motion.div>
         </div>
 
@@ -304,13 +297,18 @@ export default function Apartments() {
                     </div>
 
                     {/* Action Button - Solid blue with white text */}
-                    <div className="pt-4">
+                    <div className="pt-4 flex flex-wrap items-center gap-3">
                       <a href={apartment.bookingUrl} target="_blank" rel="noopener noreferrer">
                         <Button className="bg-brand-600 hover:bg-brand-700 text-white px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all">
                           Book Now
                           <ArrowRight className="ml-2 h-5 w-5" />
                         </Button>
                       </a>
+                      <Link to={`/apartments/${apartment.slug}`}>
+                        <Button variant="outline" className="border-brand-600 bg-transparent text-brand-600 hover:bg-brand-600 hover:text-white px-8 py-6 text-lg font-semibold transition-all">
+                          View Details
+                        </Button>
+                      </Link>
                     </div>
                   </motion.div>
                 </div>
