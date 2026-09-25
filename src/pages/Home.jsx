@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { apartments } from '@/data/apartments'
-import { ArrowRight, Star, MapPin, Wifi, Car, Shield, Users, HomeIcon, UtensilsCrossed, Sparkles, Award, Clock, Phone, Mail, ChevronLeft, ChevronRight, Waves, Building2, Scissors, ChefHat, Trophy } from 'lucide-react'
+import { ArrowRight, MapPin, Wifi, Car, Shield, Users, HomeIcon, UtensilsCrossed, Sparkles, Award, Clock, Phone, Mail, ChevronLeft, ChevronRight, Waves, Building2, Scissors, ChefHat, Trophy } from 'lucide-react'
 import { motion, useInView } from 'framer-motion'
 import { initAllTracking, trackFacebookPageView } from '@/utils/tracking'
 import LocateButton from '@/components/LocateButton'
@@ -103,30 +103,6 @@ export default function Home() {
         return 'items-center justify-center text-center px-8 md:px-16'
     }
   }
-
-  const testimonials = [
-    {
-      name: "Chioma Okonkwo",
-      location: "Lagos, Nigeria",
-      rating: 5,
-      text: "Exceptional service and beautiful apartments. The location is perfect and the staff went above and beyond to ensure our comfort.",
-      image: "/new prestine images/nwpremuimpalour (2).jpg"
-    },
-    {
-      name: "Adebayo Adeyemi",
-      location: "Abuja, Nigeria",
-      rating: 5,
-      text: "Modern amenities and impeccable cleanliness. Highly recommend for both business and leisure travelers.",
-      image: "/new prestine images/premuimbedroomwithpillows.jpg"
-    },
-    {
-      name: "Amina Ibrahim",
-      location: "Kano, Nigeria",
-      rating: 5,
-      text: "The apartment exceeded our expectations. Spacious, well-equipped, and in a prime location. Will definitely return!",
-      image: "/images/living room lugbe.webp"
-    }
-  ]
 
   const amenities = [
     { icon: Wifi, title: "High-Speed WiFi", description: "Free high-speed internet access" },
@@ -297,11 +273,10 @@ export default function Home() {
                 convenience without giving up the comfort and discretion of a private residence.
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                 {[
                   { label: 'Private Apo setting', value: 'Apo' },
                   { label: 'Deluxe Royal nightly stay', value: `NGN ${exclusiveApartment.price.toLocaleString()}` },
-                  { label: 'Guest rating', value: `${exclusiveApartment.rating || 4.9}/5` },
                 ].map((item) => (
                   <div key={item.label} className="border-y border-gray-300/70 py-4">
                     <div className="text-lg md:text-xl font-semibold text-gray-950">{item.value}</div>
@@ -674,58 +649,6 @@ export default function Home() {
                   <CardContent>
                     <p className="text-sm text-gray-600">{amenity.description}</p>
                   </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="py-12 md:py-16 lg:py-24 bg-white">
-        <div className="container mx-auto px-4 md:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-8 md:mb-12 lg:mb-16"
-          >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-light text-gray-900 mb-3 md:mb-4">
-              What Our Guests Say
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto px-4">
-              Don't just take our word for it - hear from our satisfied guests
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <Card className="bg-gray-50 border-0 shadow-lg h-full">
-                  <CardHeader>
-                    <div className="flex items-center gap-1 mb-3">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                      ))}
-                    </div>
-                    <p className="text-gray-700 italic">"{testimonial.text}"</p>
-                  </CardHeader>
-                  <CardFooter className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-300">
-                      <img src={testimonial.image} alt={testimonial.name} className="w-full h-full object-cover" loading="lazy" />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-sm">{testimonial.name}</p>
-                      <p className="text-xs text-gray-500">{testimonial.location}</p>
-                    </div>
-                  </CardFooter>
                 </Card>
               </motion.div>
             ))}

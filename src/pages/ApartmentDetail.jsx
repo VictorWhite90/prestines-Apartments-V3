@@ -419,11 +419,11 @@ export default function ApartmentDetail() {
               <MapPin className="text-gold-600" size={32} />
               Locate Us on Map
             </h2>
-            <p className="text-gray-600">Plot 219, Martin Ejembi Crescent, Opposite Queens specialist hospital, Apo-Dutse, Abuja Municipal, Abuja 900110, Federal Capital Territory</p>
+            <p className="text-gray-600">{apartment.location === 'Lugbe' ? '14 Bethel Lane, Clobek Crown Estate, Lugbe, Abuja, Federal Capital Territory' : 'Plot 219, Martin Ejembi Crescent, Opposite Queens specialist hospital, Apo-Dutse, Abuja Municipal, Abuja 900110, Federal Capital Territory'}</p>
           </motion.div>
           <div className="rounded-lg overflow-hidden shadow-lg">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.8384986523947!2d7.4921973!3d8.9867703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e734ad0fde213%3A0xfc4ab851f422c3f9!2sPRESTINE%20APARTMENTS!5e0!3m2!1sen!2sng!4v1735572037165!5m2!1sen!2sng"
+              src={apartment.location === 'Lugbe' ? 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3941.185278379167!2d7.3625165999999975!3d8.955068699999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e7210c74e11d9%3A0x2e5c292e087da8c2!2sClobek%20Crown%20Estate!5e0!3m2!1sen!2sng!4v1790104225043!5m2!1sen!2sng' : 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.8384986523947!2d7.4921973!3d8.9867703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e734ad0fde213%3A0xfc4ab851f422c3f9!2sPRESTINE%20APARTMENTS!5e0!3m2!1sen!2sng!4v1735572037165!5m2!1sen!2sng'}
               width="100%"
               height="450"
               style={{ border: 0 }}
@@ -492,11 +492,7 @@ export default function ApartmentDetail() {
                       {apt.description}
                     </p>
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1">
-                        <span className="text-yellow-400">★</span>
-                        <span className="font-semibold">{apt.rating}</span>
-                        <span className="text-sm text-gray-500">({apt.reviewCount} reviews)</span>
-                      </div>
+                      <div></div>
                       <Link
                         to={`/apartments/${apt.slug}`}
                         className={buttonVariants({ className: 'relative z-20 bg-brand-600 hover:bg-brand-700 text-white' })}

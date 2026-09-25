@@ -9,7 +9,6 @@ export const apartments = [
     originalPrice: 88125,
     promoEndDate: '2025-01-02',
     rating: 4.8,
-    reviewCount: 142,
     image: '/images/living room lugbe.webp',
     images: [
       '/images/living room lugbe.webp',
@@ -43,7 +42,6 @@ export const apartments = [
     location: 'Apo',
     price: 150000,
     rating: 4.9,
-    reviewCount: 128,
     image: '/new prestine images/nwpremuimpalour (2).jpg',
     images: [
       '/new prestine images/nwpremuimpalour (2).jpg',
@@ -78,7 +76,6 @@ export const apartments = [
     location: 'Apo',
     price: 120000,
     rating: 4.8,
-    reviewCount: 84,
     image: '/new prestine images/standard1bedroomapartment/standardpalour3.jpg',
     images: [
       '/new prestine images/standard1bedroomapartment/standardpalour.jpg',
@@ -112,7 +109,6 @@ export const apartments = [
     location: 'Apo',
     price: 75000,
     rating: 4.7,
-    reviewCount: 96,
     image: '/new prestine images/standard1bedroomapartment/standardbedroommain2.jpg',
     images: [
       '/images/delux-outsideview.jpg',
@@ -149,7 +145,6 @@ export const apartments = [
     originalPrice: 329000,
     promoEndDate: '2025-01-02',
     rating: 4.9,
-    reviewCount: 187,
     image: '/images/Apo rm4.jpg',
     images: [
       '/images/Apo rm4.jpg',

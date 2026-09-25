@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { apartments } from '@/data/apartments'
-import { ArrowRight, MapPin, Users, Home, Star, Bed, Bath, Wifi, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ArrowRight, MapPin, Users, Home, Bed, Bath, Wifi, ChevronLeft, ChevronRight } from 'lucide-react'
 import { initAllTracking, trackFacebookPageView } from '@/utils/tracking'
 
 export default function Apartments() {
@@ -183,12 +183,6 @@ export default function Apartments() {
                         loading="lazy"
                       />
 
-                      <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full">
-                        <div className="flex items-center gap-1">
-                          <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                          <span className="text-sm font-bold text-gray-900">{apartment.rating || 4.9}</span>
-                        </div>
-                      </div>
                       <div className="absolute top-4 right-6 bg-brand-600 text-white px-3 py-1.5 rounded-lg shadow-2xl">
                         <div className="flex flex-col items-end">
                           <span className="text-sm font-bold drop-shadow-lg">

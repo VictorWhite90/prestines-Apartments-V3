@@ -1,12 +1,17 @@
 import { BotMessageSquare, MapPin } from 'lucide-react'
 import { prestineLocation } from '@/config/location'
+import { useLocation } from 'react-router-dom'
 
 export default function LocateButton({ variant = 'inline', className = '' }) {
   const isFloating = variant === 'floating'
+  const { pathname } = useLocation()
+  const href = isFloating && pathname.replace(/\/+$/, '').endsWith('-lugbe')
+    ? 'https://www.google.com/maps/dir/?api=1&destination=Clobek%20Crown%20Estate%2C%20Lugbe%2C%20Abuja&travelmode=driving'
+    : prestineLocation.mapsDirectionsUrl
 
   return (
     <a
-      href={prestineLocation.mapsDirectionsUrl}
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Get directions to Prestine Apartments"
