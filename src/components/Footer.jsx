@@ -16,6 +16,7 @@ export default function Footer() {
   const quickLinks = [
     { path: '/', label: 'Home' },
     { path: '/apartments', label: 'Apartments' },
+    { path: '/blog/', label: 'Blog', external: true },
     { path: '/contact', label: 'Contact' },
   ]
 
@@ -93,13 +94,23 @@ export default function Footer() {
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.path}>
-                  <Link
-                    to={link.path}
-                    className="flex items-center gap-2 text-sm hover:text-gold-400 transition-colors group"
-                  >
-                    <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                    <span>{link.label}</span>
-                  </Link>
+                  {link.external ? (
+                    <a
+                      href={link.path}
+                      className="flex items-center gap-2 text-sm hover:text-gold-400 transition-colors group"
+                    >
+                      <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                      <span>{link.label}</span>
+                    </a>
+                  ) : (
+                    <Link
+                      to={link.path}
+                      className="flex items-center gap-2 text-sm hover:text-gold-400 transition-colors group"
+                    >
+                      <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                      <span>{link.label}</span>
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

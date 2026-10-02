@@ -19,6 +19,7 @@ export default function Navbar() {
   const navLinks = [
     { path: '/', label: 'Home' },
     { path: '/apartments', label: 'Apartments' },
+    { path: '/blog/', label: 'Blog', external: true },
     { path: '/contact', label: 'Contact' },
   ]
 
@@ -45,22 +46,31 @@ export default function Navbar() {
             <ul className="hidden lg:flex items-center gap-8">
               {navLinks.map((link) => (
                 <li key={link.path}>
-                  <Link
-                    to={link.path}
-                    className={`relative text-sm font-medium transition-colors ${
-                      location.pathname === link.path
-                        ? 'text-gold-300'
-                        : 'text-white hover:text-gold-300'
-                    }`}
-                  >
-                    {link.label}
-                    {location.pathname === link.path && (
-                      <motion.div
-                        layoutId="activeTab"
-                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gold-300"
-                      />
-                    )}
-                  </Link>
+                  {link.external ? (
+                    <a
+                      href={link.path}
+                      className="relative text-sm font-medium text-white hover:text-gold-300 transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      to={link.path}
+                      className={`relative text-sm font-medium transition-colors ${
+                        location.pathname === link.path
+                          ? 'text-gold-300'
+                          : 'text-white hover:text-gold-300'
+                      }`}
+                    >
+                      {link.label}
+                      {location.pathname === link.path && (
+                        <motion.div
+                          layoutId="activeTab"
+                          className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gold-300"
+                        />
+                      )}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -126,17 +136,27 @@ export default function Navbar() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: idx * 0.1 }}
                       >
-                        <Link
-                          to={link.path}
-                          className={`block px-4 py-3 rounded-lg transition-all duration-300 ${
-                            location.pathname === link.path
-                              ? 'bg-brand-600 text-white font-semibold shadow-lg'
-                              : 'text-gray-700 hover:bg-brand-50 hover:text-brand-600'
-                          }`}
-                          onClick={() => setIsOpen(false)}
-                        >
-                          {link.label}
-                        </Link>
+                        {link.external ? (
+                          <a
+                            href={link.path}
+                            className="block px-4 py-3 rounded-lg transition-all duration-300 text-gray-700 hover:bg-brand-50 hover:text-brand-600"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            {link.label}
+                          </a>
+                        ) : (
+                          <Link
+                            to={link.path}
+                            className={`block px-4 py-3 rounded-lg transition-all duration-300 ${
+                              location.pathname === link.path
+                                ? 'bg-brand-600 text-white font-semibold shadow-lg'
+                                : 'text-gray-700 hover:bg-brand-50 hover:text-brand-600'
+                            }`}
+                            onClick={() => setIsOpen(false)}
+                          >
+                            {link.label}
+                          </Link>
+                        )}
                       </motion.li>
                     ))}
                   </ul>
