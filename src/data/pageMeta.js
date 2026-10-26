@@ -7,7 +7,7 @@ export const pageMeta = {
   ],
   '/apartments': [
     'Apartments in Abuja: Studio to 4 Bedroom | Prestine',
-    'Five serviced apartments in Apo-Dutse and Lugbe, Abuja, from ₦74,906 to ₦279,650 a night. Compare sizes, rates and what each one includes.',
+    'Five serviced apartments in Apo-Dutse and Lugbe, Abuja, from ₦74,906 to ₦350,000 a night. Compare sizes, rates and what each one includes.',
   ],
   '/apartments/classic-studio-apartment-apo': [
     'Studio Apartment in Apo, Abuja | ₦75,000 a Night',
@@ -23,7 +23,7 @@ export const pageMeta = {
   ],
   '/apartments/deluxe-royale-4-bedroom-apartment-apo': [
     'Four Bedroom Apartment in Apo, Abuja | Sleeps 8',
-    'A four bedroom apartment in Apo-Dutse, Abuja at ₦279,650 a night, sleeping 8. Fitted kitchen, secure parking and 24-hour security. Book on WhatsApp.',
+    'A four bedroom apartment in Apo-Dutse, Abuja at ₦350,000 a night, sleeping 8. Fitted kitchen, secure parking and 24-hour security. Book on WhatsApp.',
   ],
   '/apartments/prestige-suite-2-bedroom-apartment-lugbe': [
     'Two Bedroom Shortlet in Lugbe, Abuja | ₦74,906',

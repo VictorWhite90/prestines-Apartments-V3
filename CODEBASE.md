@@ -89,7 +89,7 @@ src/
 |---|---|---|---|---|
 | Premium Royale 1BR — Apo | `premium-apartment` | ₦89,300 | 2 | **DISABLED** |
 | Classic Studio — Apo | `classic-studio` | ₦69,913 | 2 | **DISABLED** |
-| Deluxe Royale 4BR — Apo | `delux-royal` | ₦279,650 | 8 | Enabled |
+| Deluxe Royale 4BR — Apo | `delux-royal` | ₦350,000 | 8 | Enabled |
 | Prestige-Suite 2BR — Lugbe | `prestige-suite` | ₦74,906 | 3 | Enabled |
 
 **`disableDateBlocking: true`** means that apartment skips all availability checks — it can be double-booked. Used for apartments with multiple physical units (Premium 1BR has 24 units, Classic Studio has multiple).

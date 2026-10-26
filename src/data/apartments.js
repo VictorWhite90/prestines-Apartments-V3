@@ -141,9 +141,7 @@ export const apartments = [
     slug: 'deluxe-royale-4-bedroom-apartment-apo',
     bookingUrl: 'https://book.prestineapartment.com/book.html?room_id=prestige-four',
     location: 'Apo',
-    price: 279650,
-    originalPrice: 329000,
-    promoEndDate: '2025-01-02',
+    price: 350000,
     rating: 4.9,
     image: '/images/Apo rm4.jpg',
     images: [
