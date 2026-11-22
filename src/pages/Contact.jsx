@@ -193,15 +193,9 @@ export default function Contact() {
               <CardTitle className="text-gold-600">Business Hours</CardTitle>
             </CardHeader>
             <CardContent className="p-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
-                <div>
-                  <p className="font-semibold text-gray-900 mb-2 text-xl">Monday - Saturday</p>
-                  <p className="text-gray-600">24/7</p>
-                </div>
-                <div>
-                  <p className="font-semibold text-gray-900 mb-2 text-xl">Sunday</p>
-                  <p className="text-gray-600">Closed</p>
-                </div>
+              <div className="text-center">
+                <p className="font-semibold text-gray-900 mb-2 text-xl">Monday - Sunday</p>
+                <p className="text-gray-600">Open 24 hours, every day</p>
               </div>
             </CardContent>
           </Card>
