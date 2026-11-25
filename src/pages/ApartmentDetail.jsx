@@ -22,6 +22,7 @@ import {
   Wifi,
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import BookOnWhatsAppButton from '@/components/BookOnWhatsAppButton'
 import { initAllTracking, trackFacebookPageView } from '@/utils/tracking'
 
 const getFeatureIcon = (feature) => {
@@ -283,6 +284,7 @@ export default function ApartmentDetail() {
                 </div>
               </div>
             </div>
+            <div className="flex flex-wrap items-center gap-3">
             <a href={apartment.bookingUrl} target="_blank" rel="noopener noreferrer">
               <Button className="relative overflow-hidden bg-brand-600 hover:bg-brand-700 text-white px-4 py-3 text-base sm:px-8 sm:py-6 sm:text-lg">
                 Book Now
@@ -302,6 +304,8 @@ export default function ApartmentDetail() {
                 )}
               </Button>
             </a>
+            <BookOnWhatsAppButton apartment={apartment} className="px-4 py-3 text-base sm:px-8 sm:py-6 sm:text-lg" />
+            </div>
           </div>
         </div>
       </section>
@@ -390,14 +394,15 @@ export default function ApartmentDetail() {
               <Card>
                 <CardHeader>
                   <CardTitle>Book Your Stay</CardTitle>
-                  <CardDescription>Continue to our secure PMS booking page for availability and reservation details.</CardDescription>
+                  <CardDescription>Book on our secure booking page, or check availability and pay right here on WhatsApp.</CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="space-y-3">
                   <a href={apartment.bookingUrl} target="_blank" rel="noopener noreferrer" className="block">
                     <Button className="w-full bg-brand-600 hover:bg-brand-700 text-white">
                       Book Now
                     </Button>
                   </a>
+                  <BookOnWhatsAppButton apartment={apartment} linkClassName="block" className="w-full" />
                 </CardContent>
               </Card>
             </div>

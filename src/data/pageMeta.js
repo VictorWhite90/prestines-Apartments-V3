@@ -49,4 +49,8 @@ export const pageMeta = {
     'Booking, Check-in and Cancellation Policy | Prestine',
     'Check-out is 12 noon. Our booking, payment, check-in and cancellation terms for stays at Prestine Apartments in Apo-Dutse and Lugbe, Abuja.',
   ],
+  '/privacy-policy': [
+    'Privacy Policy | Prestine Apartments',
+    'How Prestine Apartments collects, uses and protects your information when you book on our website or on WhatsApp, and how to ask us to delete it.',
+  ],
 }

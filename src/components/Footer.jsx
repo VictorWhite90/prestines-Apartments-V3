@@ -25,7 +25,6 @@ export default function Footer() {
     'Long-term Rentals',
     'Corporate Housing',
     'Event Accommodation',
-    'Airport Transfers',
     'Concierge Services',
   ]
 
@@ -188,9 +187,11 @@ export default function Footer() {
             <p className="text-gray-400">
               Copyright © {currentYear}{' '}
               <span className="text-white font-semibold">Prestine Apartments</span>. All rights reserved.
+              <br />
+              Prestine Apartments is operated by Prestine Hospitality Concepts Ltd (RC 8206579).
             </p>
             <div className="flex gap-6">
-              <Link to="/policies" className="text-gray-400 hover:text-brand-400 transition-colors">
+              <Link to="/privacy-policy" className="text-gray-400 hover:text-brand-400 transition-colors">
                 Privacy Policy
               </Link>
               <Link to="/policies" className="text-gray-400 hover:text-brand-400 transition-colors">

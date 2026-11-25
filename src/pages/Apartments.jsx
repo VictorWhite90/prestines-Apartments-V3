@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { apartments } from '@/data/apartments'
 import { ArrowRight, MapPin, Users, Home, Bed, Bath, Wifi, ChevronLeft, ChevronRight } from 'lucide-react'
 import { initAllTracking, trackFacebookPageView } from '@/utils/tracking'
+import BookOnWhatsAppButton from '@/components/BookOnWhatsAppButton'
 
 export default function Apartments() {
   // Reorder apartments: premium, standard, studio, deluxe, Lugbe last
@@ -304,6 +305,7 @@ export default function Apartments() {
                           <ArrowRight className="ml-2 h-5 w-5" />
                         </Button>
                       </a>
+                      <BookOnWhatsAppButton apartment={apartment} className="px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all" />
                       <Link to={`/apartments/${apartment.slug}`}>
                         <Button variant="outline" className="border-brand-600 bg-transparent text-brand-600 hover:bg-brand-600 hover:text-white px-8 py-6 text-lg font-semibold transition-all">
                           View Details

@@ -11,6 +11,7 @@ import ApartmentDetail from './pages/ApartmentDetail'
 import Confirmation from './pages/Confirmation'
 import BookingError from './pages/BookingError'
 import Policies from './pages/Policies'
+import PrivacyPolicy from './pages/PrivacyPolicy'
 import Contact from './pages/Contact'
 import Admin from './pages/Admin'
 import Login from './components/auth/Login'
@@ -41,6 +42,7 @@ function App() {
             <Route path="/gallery" element={<div className="min-h-screen flex items-center justify-center"><h1 className="text-4xl">Gallery</h1></div>} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/policies" element={<Policies />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             
             {/* Admin routes */}
             <Route path="/admin/login" element={<Login />} />
